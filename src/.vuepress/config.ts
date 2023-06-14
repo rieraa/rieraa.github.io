@@ -1,15 +1,22 @@
-import { defineUserConfig } from "vuepress";
+import {defineUserConfig} from "vuepress";
 import theme from "./theme.js";
 
+
 export default defineUserConfig({
-  base: "/",
+    base: "/",
 
-  lang: "zh-CN",
-  title: "泡面期待沉思",
-  description: "泡面的沉思",
+    lang: "zh-CN",
+    title: "",
+    description: "000",
+    head: [
+        ['link', {rel: 'icon', href: '/ava.gif'}],
+        ['link', {rel: 'stylesheet', href: '/styles/custom.css'}]
+    ],
 
-  theme,
 
-  // Enable it with pwa
-  // shouldPrefetch: false,
+    theme,
+
+    // Enable it with pwa
+    // shouldPrefetch: false,
+
 });

@@ -2,11 +2,14 @@
 home: true
 layout: BlogHome
 icon: home
-title: 博客主页
-heroImage: /logo.svg
+title: Iynew blog
+
+[//]: # (heroImage: /logo.png)
 heroText: 迷幻面条漫游记
 heroFullScreen: true
 tagline: 在披萨派对中探索奇思妙想的荒诞之旅
+
+bgImage: /background.png
 
 
 projects:
@@ -36,9 +39,9 @@ projects:
     link: https://你的伙伴链接
 
   - icon: /logo.svg
-    name: 自定义项目
-    desc: 自定义详细介绍
-    link: https://你的自定义链接
+    name: VuePress Theme Hope
+    desc: 一个具有强大功能的vuepress主题✨
+    link: https://theme-hope.vuejs.press/zh/
 
 footer: 自定义你的页脚文字
 ---
