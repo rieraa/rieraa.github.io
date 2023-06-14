@@ -4,9 +4,9 @@ layout: BlogHome
 icon: home
 title: 博客主页
 heroImage: /logo.svg
-heroText: 泡面期待沉思
+heroText: 迷幻面条漫游记
 heroFullScreen: true
-tagline: 泡面的沉思
+tagline: 在披萨派对中探索奇思妙想的荒诞之旅
 
 
 projects:
