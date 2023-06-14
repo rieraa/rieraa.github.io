@@ -35,13 +35,9 @@ export default hopeTheme({
     description: "一个后端开发者",
     intro: "/intro.html",
     medias: {
-      BiliBili: "https://example.com",
-      Email: "mailto:info@example.com",
-      Gitee: "https://example.com",
-      GitHub: "https://example.com",
-      Gitlab: "https://example.com",
-      QQ: "https://example.com",
-      Wechat: "https://example.com",
+      BiliBili: "https://www.bilibili.com/",
+      Gitee: "https://gitee.com/rieraa",
+      GitHub: "https://github.com/rieraa",
     },
   },
 
