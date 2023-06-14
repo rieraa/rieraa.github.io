@@ -4,14 +4,16 @@ layout: BlogHome
 icon: home
 title: 博客主页
 heroImage: /logo.svg
-heroText: 你博客的名称
+heroText: 泡面期待沉思
 heroFullScreen: true
-tagline: 你可以在这里放置你的口号与标语
+tagline: 泡面的沉思
+
+
 projects:
-  - icon: project
-    name: 笔记本
-    desc: 项目详细描述
-    link: https://你的项目链接
+  - icon: leaf
+    name: Spring
+    desc: Spring全家桶
+    link: /spring/containerInit.html
 
   - icon: link
     name: 链接名称

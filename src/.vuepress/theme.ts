@@ -38,6 +38,11 @@ export default hopeTheme({
       BiliBili: "https://www.bilibili.com/",
       Gitee: "https://gitee.com/rieraa",
       GitHub: "https://github.com/rieraa",
+      Baidu: "https://baidu.com",
+      Zhihu: "https://www.zhihu.com/people/mister-hope",
+      Steam: "https://steamcommunity.com/id/Mr-Hope/",
+      Weibo: "https://weibo.com/misterhope",
+
     },
   },
 
