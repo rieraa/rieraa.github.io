@@ -44,6 +44,8 @@ export default hopeTheme({
       Weibo: "https://weibo.com/misterhope",
 
     },
+    avatar:'/avatar.gif',
+
   },
 
   encrypt: {
