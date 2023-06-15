@@ -4,8 +4,6 @@ date: 2023-06-15
 tag: 
  - 设计模式
 ---
-
-
 # 设计模式
 
 ## 策略模式
@@ -84,11 +82,8 @@ context.algorithm();
 ### **角色**
 
 - Component（抽象构件）
-
 - Concrete Component（具体构件）
-
 - Decorator（抽象装饰类）
-
 - Concrete Decorator（具体装饰类）
 
 ### **实现**
@@ -109,7 +104,7 @@ public class ListBox extends Component {
 }
 
 --------------------------------------------------------------------------
-    
+  
 //  具体构件
 public class TextBox extends Component {
 	public void display() {
@@ -163,7 +158,7 @@ public class BlackBorderDecorator extends ComponentDecorator {
 
 ![image-20230528120615051](https://oooooo.oss-cn-fuzhou.aliyuncs.com/img/image-20230528120615051.png)
 
-### 	角色
+### 角色
 
 - Subject（目标）
 - Concrete Subject（具体目标）
@@ -178,27 +173,27 @@ public class BlackBorderDecorator extends ComponentDecorator {
 public abstract class AllyControlCenter {
 	protected String allyName; //战队名称
 	protected ArrayList<Observer> players = new ArrayList<Observer>(); //定义一个集合用于存储战队成员
-	
+
 	public void setAllyName(String allyName) {
 		this.allyName = allyName;
 	}
-	
+
 	public String getAllyName() {
 		return this.allyName;
 	}
-	
+
 	//注册方法
 	public void join(Observer obs) {
 		System.out.println(obs.getName() + "加入" + this.allyName + "战队！");
 		players.add(obs);
 	}
-	
+
 	//注销方法
 	public void quit(Observer obs) {
 		System.out.println(obs.getName() + "退出" + this.allyName + "战队！");
 		players.remove(obs);
 	}
-	
+
 	//声明抽象通知方法
 	public abstract void notifyObserver(String name);
 }
@@ -213,7 +208,7 @@ public class ConcreteAllyControlCenter extends AllyControlCenter {
 		System.out.println("----------------------------");
 		this.allyName = allyName;
 	}
-	
+
 	//实现通知方法
 	public void notifyObserver(String name) {
 		System.out.println(this.allyName + "战队紧急通知，盟友" + name + "遭受敌人攻击！");
@@ -222,7 +217,7 @@ public class ConcreteAllyControlCenter extends AllyControlCenter {
 			if (!((Observer)obs).getName().equalsIgnoreCase(name)) {
 				((Observer)obs).help();
 			}
-		}		
+		}	
 	}
 }
 ```
@@ -245,24 +240,24 @@ public class Player implements Observer {
 	public Player(String name) {
 		this.name = name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	//支援盟友方法的实现
 	public void help() {
 		System.out.println("坚持住，" + this.name + "来救你！");
 	}
-	
+
 	//遭受攻击方法的实现，当遭受攻击时将调用战队控制中心类的通知方法notifyObserver()来通知盟友
 	public void beAttacked(AllyControlCenter acc) {
 		System.out.println(this.name + "被攻击！");
-		acc.notifyObserver(name);		
+		acc.notifyObserver(name);	
 	}
 }
 ```
@@ -274,27 +269,27 @@ public class Client {
 		//定义观察目标对象
 		AllyControlCenter acc;
 		acc = new ConcreteAllyControlCenter("金庸群侠");
-		
+	
         //定义四个观察者对象
 		Observer player1,player2,player3,player4,player5;
-		
+	
         //注册观察者
 		player1 = new Player("杨过");
 		acc.join(player1);
-		
+	
 		player2 = new Player("令狐冲");
 		acc.join(player2);
-		
+	
 		player3 = new Player("张无忌");
 		acc.join(player3);
-		
+	
 		player4 = new Player("段誉");
 		acc.join(player4);
-		
+	
 		player5 = new Player("郭靖");
 		acc.join(player5);
-        
-		
+      
+	
 		//某成员遭受攻击 调用通知方法
 		player2.beAttacked(acc);
 	}
@@ -342,25 +337,23 @@ public class AmbulanceSound {
 public class AmbulanceCarAdapter extends CarController {
 	private AmbulanceSound sound;  //定义适配者AmbulanceSound对象
 	private AmbulanceLamp lamp;    //定义适配者AmbulanceLamp对象
-	
+
 	public AmbulanceCarAdapter() {
 		sound = new AmbulanceSound();
 		lamp = new AmbulanceLamp();
 	}
-	
+
 	//发出救护车声音
 	public void phonate() {
 		sound.alarmSound();  //调用适配者类AmbulanceSound的方法(类似于转发调用)
 	}
-	
+
 	//呈现救护车灯闪烁
 	public void twinkle() {
 		lamp.alarmLamp();   //调用适配者类AmbulanceLamp的方法
 	}
 }
 ```
-
-
 
 ```java
 //汽车控制类，充当目标抽象类
@@ -449,7 +442,7 @@ public class SpringComboBox implements ComboBox {
 public class SummerButton implements Button {
 	public void display() {
 		System.out.println("显示浅蓝色按钮。");
-	}	
+	}
 }
 ```
 
@@ -572,7 +565,7 @@ public class AngelBuilder extends ActorBuilder {
 
 	public void buildHairstyle() {
 		actor.setHairstyle("披肩长发");
-	}	
+	}
 }
 ```
 
@@ -604,11 +597,11 @@ public class Client {
 
         ActorController ac = new ActorController();
         Actor actor;
-        
+      
         //通过指挥者创建完整的建造者对象
         //传入具体建造者对象（ActorBuilder 的子类对象）
         actor = ac.construct(ab); 
-        
+      
 
         String type = actor.getType();
         System.out.println(type + "的外观：");
@@ -755,7 +748,7 @@ public class WeeklyLog implements Serializable {
 		ByteArrayOutputStream bao=new ByteArrayOutputStream();
 		ObjectOutputStream oos=new ObjectOutputStream(bao);
 		oos.writeObject(this);
-		
+	
 		//将对象从流中取出
 		ByteArrayInputStream bis=new ByteArrayInputStream(bao.toByteArray());
 		ObjectInputStream ois=new ObjectInputStream(bis);
@@ -804,7 +797,7 @@ public class Singleton {
 
 - 基础版
 
-多线程环境下可能会出现问题。如果多个线程同时访问`getInstance()`方法，并且在`instance`还未被创建时，那么每个线程都会通过判断`instance`为`null`的条件，并创建一个新的实例。这样就会破坏单例的唯一性，导致多个实例被创建。
+多线程环境下可能会出现问题。如果多个线程同时访问 `getInstance()`方法，并且在 `instance`还未被创建时，那么每个线程都会通过判断 `instance`为 `null`的条件，并创建一个新的实例。这样就会破坏单例的唯一性，导致多个实例被创建。
 
 ```java
 public class LazySingleton {
@@ -824,12 +817,12 @@ public class LazySingleton {
 
 - 添加锁方法
 
-通过`synchronized`关键字修饰`getInstance()`方法，以确保在多线程环境下只创建一个实例。当第一个线程调用`getInstance()`方法时，如果实例尚未创建，它将创建一个新的实例
+通过 `synchronized`关键字修饰 `getInstance()`方法，以确保在多线程环境下只创建一个实例。当第一个线程调用 `getInstance()`方法时，如果实例尚未创建，它将创建一个新的实例
 
-<u>存在缺点</u>：
+`<u>`存在缺点`</u>`：
 
-1. 每次调用`getInstance()`方法都会进入`synchronized`同步块，即使实例已经被创建。这会造成不必要的同步开销，影响性能。
-2. 在多线程环境下，当多个线程同时通过第一个判断条件`instance == null`时，它们会依次进入`synchronized`同步块，而只有一个线程能够创建实例，其他线程会被阻塞。这可能会引起线程竞争和性能问题。
+1. 每次调用 `getInstance()`方法都会进入 `synchronized`同步块，即使实例已经被创建。这会造成不必要的同步开销，影响性能。
+2. 在多线程环境下，当多个线程同时通过第一个判断条件 `instance == null`时，它们会依次进入 `synchronized`同步块，而只有一个线程能够创建实例，其他线程会被阻塞。这可能会引起线程竞争和性能问题。
 
 ```java
 public class LazySingleton {
@@ -886,7 +879,7 @@ public class LazySingleton {
 
 在静态内部类中定义的静态方法可以直接被调用，不需要通过创建内部类的实例来访问。静态内部类与外部类之间是独立的，因此可以直接访问静态内部类中的静态成员，包括静态方法。
 
-在上述示例中，静态内部类`HolderClass`中的`instance`变量是私有静态的，而`getInstance()`方法是公共静态的。这意味着可以通过`Singleton.HolderClass.instance`直接访问`instance`变量，也可以通过`Singleton.getInstance()`调用`getInstance()`方法来获取单例实例。这种方式提供了更简洁的访问方式，无需显式创建内部类实例。
+在上述示例中，静态内部类 `HolderClass`中的 `instance`变量是私有静态的，而 `getInstance()`方法是公共静态的。这意味着可以通过 `Singleton.HolderClass.instance`直接访问 `instance`变量，也可以通过 `Singleton.getInstance()`调用 `getInstance()`方法来获取单例实例。这种方式提供了更简洁的访问方式，无需显式创建内部类实例。
 
 需要注意的是，静态内部类中不能直接访问外部类的非静态成员，因为静态内部类在没有外部类实例的情况下也可以被访问。如果需要访问外部类的非静态成员，可以通过创建外部类的实例来实现。
 
@@ -896,12 +889,12 @@ public class Singleton {
     private Singleton() {
         // 私有构造函数，防止外部直接实例化对象
     }
-    
+  
     // 静态内部类
     private static class HolderClass {
         private final static Singleton instance = new Singleton();
-    }	
-    
+    }
+  
     /**
      * 公共静态方法，提供全局访问点获取单例实例
      *
@@ -1010,8 +1003,6 @@ public class Matrix {
 }
 ```
 
-
-
 ## 状态模式
 
 ### 介绍
@@ -1025,9 +1016,7 @@ public class Matrix {
 ### 角色
 
 - Context（环境类）
-
 - State（抽象状态类）
-
 - Concrete State（具体状态类）
 
 ### 实现
@@ -1069,7 +1058,7 @@ public class OffState extends SwitchState{
 		System.out.println("打开！");
 		s.setState(Switch.getState("on"));
 	}
-	
+
 	public void off(Switch s) {
 		System.out.println("已经关闭！");
 	}
@@ -1094,7 +1083,7 @@ public class Switch {
 	public void setState(SwitchState state) {
 		currentState = state;
 	}
-    
+  
 
 	public static SwitchState getState(String type) {
 		if (type.equalsIgnoreCase("on")) {
@@ -1104,15 +1093,15 @@ public class Switch {
 			return offState;
 		}
 	}
-		
-    
+	
+  
     //下面兩個方法會將當前對象傳入 若狀態改變則會對對cuurent進行修改
     //打开开关
 	public void on() {
 		System.out.print(name);
 		currentState.on(this);
 	}
-	
+
 	//关闭开关
 	public void off() {
 		System.out.print(name);
@@ -1139,11 +1128,11 @@ public class Screen {
   	this.currentState = normalState; //设置初始状态
   	this.currentState.display();
 	}
-	
+
 	public void setState(ScreenState state) {
 		this.currentState = state;
 	}
-	
+
 	//单击事件处理方法，封转了对状态类中业务方法的调用和状态的转换
 	public void onClick() {
 	  	if (this.currentState == normalState) {
@@ -1171,43 +1160,43 @@ public class Account {
 	private AccountState state; //维持一个对抽象状态对象的引用
 	private String owner; //开户名
 	private double balance = 0; //账户余额
-	
+
 	public Account(String owner,double init) {
 		this.owner = owner;
 		this.balance = balance;
 		this.state = new NormalState(this); //设置初始状态
-		System.out.println(this.owner + "开户，初始金额为" + init);	
-		System.out.println("---------------------------------------------");	
+		System.out.println(this.owner + "开户，初始金额为" + init);
+		System.out.println("---------------------------------------------");
 	}
-	
+
 	public double getBalance() {
 		return this.balance;
 	}
-	
+
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	public void setState(AccountState state) {
 		this.state = state;
 	}
-	
+
 	public void deposit(double amount) {
 		System.out.println(this.owner + "存款" + amount);
 		state.deposit(amount); //调用状态对象的deposit()方法
 		System.out.println("现在余额为"+ this.balance);
 		System.out.println("现在帐户状态为"+ this.state.getClass().getName());
-		System.out.println("---------------------------------------------");			
+		System.out.println("---------------------------------------------");		
 	}
-	
+
 	public void withdraw(double amount) {
 		System.out.println(this.owner + "取款" + amount);
 		state.withdraw(amount); //调用状态对象的withdraw()方法
 		System.out.println("现在余额为"+ this.balance);
-		System.out.println("现在帐户状态为"+ this. state.getClass().getName());		
+		System.out.println("现在帐户状态为"+ this. state.getClass().getName());	
 		System.out.println("---------------------------------------------");
 	}
-	
+
 	public void computeInterest()
 	{
 		state.computeInterest(); //调用状态对象的computeInterest()方法
@@ -1237,22 +1226,22 @@ public class NormalState extends AccountState {
 	public NormalState(AccountState state) {
 		this.acc = state.acc;
 	}
-		
+	
 	public void deposit(double amount) {
 		acc.setBalance(acc.getBalance() + amount);
 		stateCheck();
 	}
-	
+
 	public void withdraw(double amount) {
 		acc.setBalance(acc.getBalance() - amount);
 		stateCheck();
 	}
-	
+
 	public void computeInterest()
 	{
 		System.out.println("正常状态，无须支付利息！");
 	}
-	
+
 	//状态转换
 	public void stateCheck() {
 		if (acc.getBalance() > -2000 && acc.getBalance() <= 0) {
@@ -1263,7 +1252,7 @@ public class NormalState extends AccountState {
 		}
 		else if (acc.getBalance() < -2000) {
 			System.out.println("操作受限！");
-		}	
+		}
 	}   
 }
 ```
@@ -1274,21 +1263,21 @@ public class OverdraftState extends AccountState {
 	public OverdraftState(AccountState state) {
 		this.acc = state.acc;
 	}
-	
+
 	public void deposit(double amount) {
 		acc.setBalance(acc.getBalance() + amount);
 		stateCheck();
 	}
-	
+
 	public void withdraw(double amount) {
 		acc.setBalance(acc.getBalance() - amount);
 		stateCheck();
 	}
-	
+
 	public void computeInterest() {
 		System.out.println("计算利息！");
 	}
-	
+
 	//状态转换
 	public void stateCheck() {
 		if (acc.getBalance() > 0) {
@@ -1311,20 +1300,20 @@ public class RestrictedState extends AccountState {
 	public RestrictedState(AccountState state) {
 		this.acc = state.acc;
 	}
-	
+
 	public void deposit(double amount) {
 		acc.setBalance(acc.getBalance() + amount);
 		stateCheck();
 	}
-	
+
 	public void withdraw(double amount) {
 		System.out.println("帐号受限，取款失败");
 	}
-	
+
 	public void computeInterest() {
 		System.out.println("计算利息！");
 	}
-	
+
 	//状态转换
 	public void stateCheck() {
 		if(acc.getBalance() > 0) {
@@ -1351,8 +1340,6 @@ public class Client {
 	}
 }
 ```
-
-
 
 ## 命令模式
 
@@ -1386,7 +1373,7 @@ public abstract class Command {
 // 帮助
 public class HelpCommand extends Command {
 	private DisplayHelpClass hcObj;   //维持对请求接收者的引用
-	
+
 	public HelpCommand() {
 		hcObj = new DisplayHelpClass();
 	}
@@ -1400,11 +1387,11 @@ public class HelpCommand extends Command {
 // 退出
 public class ExitCommand extends Command {
 	private SystemExitClass seObj;  //维持对请求接收者的引用
-	
+
 	public ExitCommand() {
 		seObj = new SystemExitClass();
 	}
-	
+
 	//命令执行方法，将调用请求接收者的业务方法
 	public void execute() {
 		seObj.exit();
@@ -1432,12 +1419,12 @@ public class SystemExitClass {
 // 调用者
 public class FunctionButton {
 	private Command command;  //维持一个抽象命令对象的引用
-	
+
 	//为功能键注入命令
 	public void setCommand(Command command) {
 		this.command = command;
 	}
-	
+
 	//发送请求的方法
 	public void click() {
 		System.out.print("单击功能键: ");
@@ -1455,7 +1442,7 @@ public class Client {
 
 		Command command; //定义命令对象
 		command = (Command)XMLUtil.getBean(); //读取配置文件，反射生成对象
-		
+	
 		fb.setCommand(command); //将命令对象注入功能键
 		fb.click(); //调用功能键的业务方法
 	}
@@ -1497,26 +1484,26 @@ public class Folder extends AbstractFile {
 	//定义集合fileList，用于存储AbstractFile类型的成员
 	private ArrayList<AbstractFile> fileList=new ArrayList<AbstractFile>();
 	private String name;
-		
+	
 	public Folder(String name) {
 		this.name = name;
 	}
-	
+
 	public void add(AbstractFile file) {
-	   fileList.add(file);	
+	   fileList.add(file);
 	}
-	
+
 	public void remove(AbstractFile file) {
 		fileList.remove(file);
 	}
-	
+
 	public AbstractFile getChild(int i) {
 		return (AbstractFile)fileList.get(i);
 	}
-	
+
 	public void killVirus() {
 		System.out.println("****对文件夹'" + name + "'进行杀毒");  //模拟杀毒
-		
+	
 		//递归调用成员构件的killVirus()方法
 		for(Object obj : fileList) {
 			((AbstractFile)obj).killVirus();
@@ -1531,24 +1518,24 @@ public class Folder extends AbstractFile {
 //ImageFile
 public class ImageFile extends AbstractFile {
 	private String name;
-	
+
 	public ImageFile(String name) {
 		this.name = name;
 	}
-	
+
 	public void add(AbstractFile file) {
 	   System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public void remove(AbstractFile file) {
 		System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public AbstractFile getChild(int i) {
 		System.out.println("对不起，不支持该方法！");
 		return null;
 	}
-	
+
 	public void killVirus() {
 		//模拟杀毒
 		System.out.println("----对图像文件'" + name + "'进行杀毒");
@@ -1559,24 +1546,24 @@ public class ImageFile extends AbstractFile {
 //TextFile
 public class TextFile extends AbstractFile {
 	private String name;
-	
+
 	public TextFile(String name) {
 		this.name = name;
 	}
-	
+
 	public void add(AbstractFile file) {
 	   System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public void remove(AbstractFile file) {
 		System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public AbstractFile getChild(int i) {
 		System.out.println("对不起，不支持该方法！");
 		return null;
 	}
-	
+
 	public void killVirus() {
 		//模拟杀毒
 		System.out.println("----对文本文件'" + name + "'进行杀毒");
@@ -1586,24 +1573,24 @@ public class TextFile extends AbstractFile {
 //VideoFile
 public class VideoFile extends AbstractFile {
 	private String name;
-	
+
 	public VideoFile(String name) {
 		this.name = name;
 	}
-	
+
 	public void add(AbstractFile file) {
 	   System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public void remove(AbstractFile file) {
 		System.out.println("对不起，不支持该方法！");
 	}
-	
+
 	public AbstractFile getChild(int i) {
 		System.out.println("对不起，不支持该方法！");
 		return null;
 	}
-	
+
 	public void killVirus() {
 		//模拟杀毒
 		System.out.println("----对视频文件'" + name + "'进行杀毒");
@@ -1617,12 +1604,12 @@ public class Client {
 	public static void main(String args[]) {
         //针对抽象构件编程
 		AbstractFile file1,file2,file3,file4,file5,folder1,folder2,folder3,folder4;
-		
+	
 		folder1 = new Folder("Sunny的资料");
 		folder2 = new Folder("图像文件");
 		folder3 = new Folder("文本文件");
 		folder4 = new Folder("视频文件");
-		
+	
 		file1 = new ImageFile("小龙女.jpg");
 		file2 = new ImageFile("张无忌.gif");
 		file3 = new TextFile("九阴真经.txt");
@@ -1634,18 +1621,16 @@ public class Client {
 		folder3.add(file3);
 		folder3.add(file4);
 		folder4.add(file5);
-		
+	
 		folder1.add(folder2);
 		folder1.add(folder3);
 		folder1.add(folder4);
-		
+	
         //从“Sunny的资料”结点开始进行杀毒操作
 		folder1.killVirus();
 	}
 }
 ```
-
-
 
 ## 模式（模板）
 

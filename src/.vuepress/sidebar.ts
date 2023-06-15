@@ -26,7 +26,15 @@ export default sidebar({
             children: "structure",
         },
 
-    ]
+    ],
+    "/study/": [
+      {
+          text: "Java-path",
+          icon: "laptop-code",
+          children: "structure",
+      },
+
+  ]
 
 
 });

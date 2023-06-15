@@ -18,10 +18,10 @@ projects:
     desc: Spring全家桶
     link: /spring/containerInit.html
 
-  - icon: link
-    name: 链接名称
+  - icon: book
+    name: Java
     desc: 链接详细描述
-    link: https://链接地址
+    link: https://rieraa.github.io/study/
 
   - icon: book
     name: 书籍名称
@@ -43,11 +43,5 @@ projects:
     desc: 一个具有强大功能的vuepress主题✨
     link: https://theme-hope.vuejs.press/zh/
 
-footer: 自定义你的页脚文字
+footer:
 ---
-
-这是一个博客主页的案例。
-
-要使用此布局，你应该在页面前端设置 `layout: BlogHome` 和 `home: true`。
-
-相关配置文档请见 [博客主页](https://theme-hope.vuejs.press/zh/guide/blog/home/)。
