@@ -21,7 +21,7 @@ projects:
   - icon: book
     name: Java
     desc: 链接详细描述
-    link: https://rieraa.github.io/study/
+    link: /study
 
   - icon: book
     name: 书籍名称
