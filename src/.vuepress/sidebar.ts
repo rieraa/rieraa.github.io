@@ -1,40 +1,23 @@
-import {sidebar} from "vuepress-theme-hope";
+import { sidebar } from "vuepress-theme-hope";
 
 export default sidebar({
-    "/": [
 
-        {
-            text: "如何使用",
-            icon: "laptop-code",
-            prefix: "demo/",
-            link: "demo/",
-            children: "structure",
-        },
-        {
-            text: "文章",
-            icon: "book",
-            prefix: "posts/",
-            children: "structure",
-        },
-        "slides",
-    ],
-    "/notes/": [
-        {
-            text: "design-mode",
-            icon: "laptop-code",
-            prefix: "design/",
-            children: "structure",
-        },
-
-    ],
-    "/study/": [
-      {
-          text: "Java-path",
-          icon: "laptop-code",
-          children: "structure",
-      },
+  "/notes/": [
+    {
+      text: "Additional",
+      icon: "laptop-code",
+      prefix: "Additional/",
+      children: "structure",
+    },
+    {
+      text: "Language",
+      icon: "laptop-code",
+      prefix: "Language/",
+      children: "structure",
+    },
 
   ]
+
 
 
 });

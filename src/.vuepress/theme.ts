@@ -8,8 +8,9 @@ import sidebar from "./sidebar.js";
 export default hopeTheme({
   hostname: "https://mister-hope.github.io",
 
+
   author: {
-    name: "Iynew",
+    name: "ameee",
     url: "https://mrhope.site",
   },
 
@@ -17,7 +18,7 @@ export default hopeTheme({
 
   logo: "/logo.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "https://github.com/rieraa/rieraa.github.io",
 
   docsDir: "src",
 
@@ -45,7 +46,7 @@ export default hopeTheme({
 
     },
 
-    avatar:'ava.gif',
+    avatar: 'ava.gif',
 
 
 

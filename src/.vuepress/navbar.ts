@@ -7,19 +7,20 @@ export default navbar([
     {
         text: "笔记",
         icon: "book",
-        prefix: "/notes/",
+        prefix: "/notes/Language/",
         children: [
+           
             {
-                text: "设计模式",
-                icon: "pen-to-square",
-                prefix: "design/",
-                children: [
-                    {text: "设计模式", icon: "pen-to-square", link: "patterns"},
+              text: "Java",
+              icon: "pen-to-square",
+              prefix: "java/",
+              children: [
+                  {text: "basic", icon: "pen-to-square", link: "basic"},
 
 
-                ],
-                
-            },
+              ],
+              
+          },
             
         ]
     }
