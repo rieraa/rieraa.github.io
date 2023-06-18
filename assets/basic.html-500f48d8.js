@@ -1,1 +1,0 @@
-import{_ as a}from"./plugin-vue_export-helper-c27b6911.js";import{o as c,c as s,b as e,d as t}from"./app-a438ebbc.js";const o={},r=e("h1",{id:"basic",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#basic","aria-hidden":"true"},"#"),t(" Basic")],-1),i=[r];function n(_,d){return c(),s("div",null,i)}const f=a(o,[["render",n],["__file","basic.html.vue"]]);export{f as default};
