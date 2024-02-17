@@ -47,6 +47,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Git Commit</title>
+    <url>/post/70316f9e.html</url>
+    <content><![CDATA[<h3 id="commit-message-格式"><a href="#commit-message-格式" class="headerlink" title="commit message 格式"></a><strong>commit message 格式</strong></h3><p><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code></p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a><strong>type</strong></h3><ul>
+<li><p>feat：新功能（feature）。</p>
+</li>
+<li><p>fix&#x2F;to：修复 bug，可以是 QA 发现的 BUG，也可以是研发自己发现的 BUG。</p>
+</li>
+<li><p>docs：文档（documentation）。</p>
+</li>
+<li><p>style：格式（不影响代码运行的变动）。</p>
+</li>
+<li><p>refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）。</p>
+</li>
+<li><p>perf：优化相关，比如提升性能、体验。</p>
+</li>
+<li><p>test：增加测试。</p>
+</li>
+<li><p>chore：构建过程或辅助工具的变动。</p>
+</li>
+<li><p>revert：回滚到上一个版本。</p>
+</li>
+<li><p>merge：代码合并。</p>
+</li>
+<li><p>sync：同步主线或分支的 Bug。</p>
+</li>
+</ul>
+<h3 id="scope-可选"><a href="#scope-可选" class="headerlink" title="scope(可选)"></a><strong>scope(可选)</strong></h3><p>scope 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+<p>例如在 Angular，可以是 location，browser，compile，compile，rootScope， ngHref，ngClick，ngView 等。如果你的修改影响了不止一个 scope，你可以使用*代替。</p>
+<h3 id="subject-必须"><a href="#subject-必须" class="headerlink" title="subject(必须)"></a><strong>subject(必须)</strong></h3><p>subject 是 commit 目的的简短描述，不超过 50 个字符。</p>
+<ul>
+<li><p>结尾不加句号或其他标点符号。</p>
+</li>
+<li><p>根据以上规范 git commit message 将是如下的格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fix(DAO):用户查询缺少username属性</span><br><span class="line">feat(Controller):用户查询接口开发</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS模块的导入导出</title>
     <url>/post/3e90cfd3.html</url>
     <content><![CDATA[<h2 id="JS-模块的导入导出"><a href="#JS-模块的导入导出" class="headerlink" title="JS 模块的导入导出"></a>JS 模块的导入导出</h2><p>导入导出模块？ 要不要加{}？ 如何导出模块？路径中需不需要写文件后缀？</p>
@@ -164,48 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git Commit</title>
-    <url>/post/70316f9e.html</url>
-    <content><![CDATA[<h3 id="commit-message-格式"><a href="#commit-message-格式" class="headerlink" title="commit message 格式"></a><strong>commit message 格式</strong></h3><p><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code></p>
-<h3 id="type"><a href="#type" class="headerlink" title="type"></a><strong>type</strong></h3><ul>
-<li><p>feat：新功能（feature）。</p>
-</li>
-<li><p>fix&#x2F;to：修复 bug，可以是 QA 发现的 BUG，也可以是研发自己发现的 BUG。</p>
-</li>
-<li><p>docs：文档（documentation）。</p>
-</li>
-<li><p>style：格式（不影响代码运行的变动）。</p>
-</li>
-<li><p>refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）。</p>
-</li>
-<li><p>perf：优化相关，比如提升性能、体验。</p>
-</li>
-<li><p>test：增加测试。</p>
-</li>
-<li><p>chore：构建过程或辅助工具的变动。</p>
-</li>
-<li><p>revert：回滚到上一个版本。</p>
-</li>
-<li><p>merge：代码合并。</p>
-</li>
-<li><p>sync：同步主线或分支的 Bug。</p>
-</li>
-</ul>
-<h3 id="scope-可选"><a href="#scope-可选" class="headerlink" title="scope(可选)"></a><strong>scope(可选)</strong></h3><p>scope 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
-<p>例如在 Angular，可以是 location，browser，compile，compile，rootScope， ngHref，ngClick，ngView 等。如果你的修改影响了不止一个 scope，你可以使用*代替。</p>
-<h3 id="subject-必须"><a href="#subject-必须" class="headerlink" title="subject(必须)"></a><strong>subject(必须)</strong></h3><p>subject 是 commit 目的的简短描述，不超过 50 个字符。</p>
-<ul>
-<li><p>结尾不加句号或其他标点符号。</p>
-</li>
-<li><p>根据以上规范 git commit message 将是如下的格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fix(DAO):用户查询缺少username属性</span><br><span class="line">feat(Controller):用户查询接口开发</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Promise</title>
     <url>/post/54b11a0c.html</url>
     <content><![CDATA[<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Promise-的基本使用"><a href="#Promise-的基本使用" class="headerlink" title="Promise 的基本使用"></a>Promise 的基本使用</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
@@ -298,6 +298,11 @@
       <tags>
         <tag>vue</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>WELCOME TO MY BLOG 🍾 🪅 🥂 🎉</title>
+    <url>/post/4a17b156.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Repair</title>
@@ -766,9 +771,41 @@
       </tags>
   </entry>
   <entry>
-    <title>WELCOME TO MY BLOG 🍾 🪅 🥂 🎉</title>
-    <url>/post/4a17b156.html</url>
+    <title>css基础</title>
+    <url>/post/eda1a9a9.html</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>样式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java学习</title>
+    <url>/post/c2adefc4.html</url>
+    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
+<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
+</ul>
+<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
+<p>VO是返回给前端用于展示的 </p>
+<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
+<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
+<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
+<p>下面是一个使用DTO和VO的示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title>WebSocket</title>
@@ -842,43 +879,6 @@
       </tags>
   </entry>
   <entry>
-    <title>css基础</title>
-    <url>/post/eda1a9a9.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>css</tag>
-        <tag>样式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java学习</title>
-    <url>/post/c2adefc4.html</url>
-    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
-<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
-</ul>
-<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
-<p>VO是返回给前端用于展示的 </p>
-<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
-<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
-<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
-<p>下面是一个使用DTO和VO的示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>this指向</title>
     <url>/post/74520f03.html</url>
     <content><![CDATA[<h2 id="不同情况下的this指向"><a href="#不同情况下的this指向" class="headerlink" title="不同情况下的this指向"></a>不同情况下的<code>this</code>指向</h2><p>理解函数中的 <code>this</code> 关键字可能需要一些JavaScript中this的上下文的背景知识。在JavaScript中，<code>this</code> 的值是在函数被调用时确定的，并取决于函数的调用方式。</p>
@@ -922,6 +922,52 @@
       </categories>
       <tags>
         <tag>closure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>执行上下文栈</title>
+    <url>/post/dec4cd8f.html</url>
+    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
+
+<p>两段代码执行的结果均输出<code>local scope</code></p>
+<blockquote>
+<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
+<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
+</blockquote>
+<p>两端代码的压栈顺序</p>
+<p>答案就是执行上下文栈的变化不一样。</p>
+<p>第一段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
+</blockquote>
+<p>让我们模拟第二段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
+</blockquote>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
+<ul>
+<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有 window 对象的属性拥有全局作用域</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript 深入学习</category>
+      </categories>
+      <tags>
+        <tag>上下文</tag>
       </tags>
   </entry>
   <entry>
@@ -997,63 +1043,6 @@
       </tags>
   </entry>
   <entry>
-    <title>执行上下文栈</title>
-    <url>/post/dec4cd8f.html</url>
-    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
-
-<p>两段代码执行的结果均输出<code>local scope</code></p>
-<blockquote>
-<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
-<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
-</blockquote>
-<p>两端代码的压栈顺序</p>
-<p>答案就是执行上下文栈的变化不一样。</p>
-<p>第一段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
-</blockquote>
-<p>让我们模拟第二段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
-</blockquote>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
-<ul>
-<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>所有 window 对象的属性拥有全局作用域</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaScript 深入学习</category>
-      </categories>
-      <tags>
-        <tag>上下文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文章配置</title>
-    <url>/post/dc78123f.html</url>
-    <content><![CDATA[<h2 id="表头配置"><a href="#表头配置" class="headerlink" title="表头配置"></a>表头配置</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">description:</span><br><span class="line">top<span class="emphasis">_img: &#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="更新时间"><a href="#更新时间" class="headerlink" title="更新时间"></a>更新时间</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">updated:</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>config</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数组方法</title>
     <url>/post/4f9a43e7.html</url>
     <content><![CDATA[<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
@@ -1092,6 +1081,17 @@
 ]]></content>
       <tags>
         <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章配置</title>
+    <url>/post/dc78123f.html</url>
+    <content><![CDATA[<h2 id="表头配置"><a href="#表头配置" class="headerlink" title="表头配置"></a>表头配置</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">description:</span><br><span class="line">top<span class="emphasis">_img: &#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更新时间"><a href="#更新时间" class="headerlink" title="更新时间"></a>更新时间</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">updated:</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>config</tag>
       </tags>
   </entry>
   <entry>
