@@ -1,0 +1,49 @@
+/* 使用CSS变量定义默认的白天和夜间模式下的背景颜色和透明度 */
+:root {
+    --background-color-light: rgba(255, 255, 255, 0.7);
+    --background-color-dark: rgba(0, 0, 0, 0.7);
+}
+
+/* 根据当前主题模式选择不同的背景颜色 */
+.layout_post>#post,
+#aside_content .card-widget,
+#recent-posts>.recent-post-item,
+.layout_page>div:first-child:not(.recent-posts),
+.layout_post>#page,
+.layout_post>#post,
+.read-mode .layout_post>#post {
+    background: var(--background-color-light);
+}
+
+/* 设置侧边卡片的透明度 */
+:root {
+  --card-bg: var(--background-color-light);
+}
+
+/* 页脚透明 */
+#footer {
+    background: rgba(255, 255, 255, 0); /* 完全透明的背景，不受主题影响 */
+}
+
+/* 在夜间模式下修改背景颜色和透明度 */
+[data-theme="dark"] {
+    /* 修改白天模式和夜间模式下的背景颜色和透明度 */
+    --background-color-light: rgba(0, 0, 0, 0.7);
+    --background-color-dark: rgba(0, 0, 0, 0.7);
+}
+
+/* 根据当前主题模式选择不同的背景颜色 */
+[data-theme="dark"] .layout_post>#post,
+[data-theme="dark"] #aside_content .card-widget,
+[data-theme="dark"] #recent-posts>.recent-post-item,
+[data-theme="dark"] .layout_page>div:first-child:not(.recent-posts),
+[data-theme="dark"] .layout_post>#page,
+[data-theme="dark"] .layout_post>#post,
+[data-theme="dark"] .read-mode .layout_post>#post {
+    background: var(--background-color-dark);
+}
+
+/* 设置夜间模式下的侧边卡片透明度 */
+[data-theme="dark"] {
+  --card-bg: var(--background-color-dark);
+}
