@@ -47,6 +47,71 @@
       </tags>
   </entry>
   <entry>
+    <title>JS模块的导入导出</title>
+    <url>/post/3e90cfd3.html</url>
+    <content><![CDATA[<h2 id="JS-模块的导入导出"><a href="#JS-模块的导入导出" class="headerlink" title="JS 模块的导入导出"></a>JS 模块的导入导出</h2><p>导入导出模块？ 要不要加{}？ 如何导出模块？路径中需不需要写文件后缀？</p>
+<h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p><code>nodejs </code> 借鉴了 <code>Commonjs</code> 的 Module ，实现了良好的模块化管理</p>
+<p><strong>特点</strong></p>
+<ul>
+<li><p>在 <code>commonjs</code> 中每一个 js 文件都是一个单独的模块，我们可以称之为 module；</p>
+</li>
+<li><p>该模块中，包含 CommonJS 规范的核心变量: exports、module.exports、require；</p>
+</li>
+</ul>
+<h3 id="Es-Module"><a href="#Es-Module" class="headerlink" title="Es Module"></a>Es Module</h3><p>export 与 export default 的区别</p>
+<ul>
+<li>export 与 export default 均可用于导出常量、函数、文件、模块等</li>
+<li>可以在其它文件或模块中通过 import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用</li>
+<li>export default 后面不能跟 const 或 let 的关键词</li>
+<li>export、import 可以有多个，export default 仅有一个。</li>
+<li>通过 export 方式导出，在导入时要加 { }，export default 则不需要</li>
+<li>export<code>具名</code>导出 xxx ，export default<code>匿名</code>。区别在于导入的时候，export 需要<code>一样</code>的名称才能匹配，后者无论取什么名都可以。</li>
+<li>模块化管理中一个文件就是一个模块，export 可以导出多个方法和变量，export default 只能导出当前模块，一个 js 文件中只支持出现一个</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ES Moudle</tag>
+        <tag>CommonJS</tag>
+        <tag>模块化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pinia</title>
+    <url>/post/74dce755.html</url>
+    <content><![CDATA[<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install pinia</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>入口文件中引入,将 <code>pinia</code>挂载到 <code>Vue</code>应用中</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(pinia);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建store</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/store/user.<span class="property">ts</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数是应用程序中 store 的唯一 id</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUsersStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;users&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;Jhon&quot;</span>,</span><br><span class="line">            <span class="attr">age</span>: <span class="number">25</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//leii</span></span><br><span class="line">    <span class="attr">getters</span>: &#123;</span><br><span class="line">        <span class="attr">getAddAge</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> state.<span class="property">age</span> + <span class="number">100</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用store</li>
+</ul>
+<p>利用 <code>pinia</code>的 <code>storeToRefs</code>函数，将 <code>state</code>中的数据变为了响应式的。</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/<span class="title class_">App</span>.<span class="property">vue</span></span><br><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; useUsersStore &#125; <span class="keyword">from</span> <span class="string">&quot;../src/store/user&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useUsersStore</span>();</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, sex &#125; = <span class="title function_">storeToRefs</span>(store);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>批量更改数据</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 较少字段的修改方式</span></span><br><span class="line">&lt;button <span class="meta">@click</span>=<span class="string">&quot;patchStore&quot;</span>&gt;批量修改数据&lt;/button&gt;</span><br><span class="line"><span class="comment">// 批量修改数据</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">patchStore</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  store.$patch(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">23</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">store.$patch(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  state.<span class="property">items</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;shoes&#x27;</span>, <span class="attr">quantity</span>: <span class="number">1</span> &#125;)</span><br><span class="line">  state.<span class="property">hasChanged</span> = <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>StateManagement</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git Commit</title>
     <url>/post/70316f9e.html</url>
     <content><![CDATA[<h3 id="commit-message-格式"><a href="#commit-message-格式" class="headerlink" title="commit message 格式"></a><strong>commit message 格式</strong></h3><p><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code></p>
@@ -89,196 +154,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS模块的导入导出</title>
-    <url>/post/3e90cfd3.html</url>
-    <content><![CDATA[<h2 id="JS-模块的导入导出"><a href="#JS-模块的导入导出" class="headerlink" title="JS 模块的导入导出"></a>JS 模块的导入导出</h2><p>导入导出模块？ 要不要加{}？ 如何导出模块？路径中需不需要写文件后缀？</p>
-<h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p><code>nodejs </code> 借鉴了 <code>Commonjs</code> 的 Module ，实现了良好的模块化管理</p>
-<p><strong>特点</strong></p>
-<ul>
-<li><p>在 <code>commonjs</code> 中每一个 js 文件都是一个单独的模块，我们可以称之为 module；</p>
-</li>
-<li><p>该模块中，包含 CommonJS 规范的核心变量: exports、module.exports、require；</p>
-</li>
-</ul>
-<h3 id="Es-Module"><a href="#Es-Module" class="headerlink" title="Es Module"></a>Es Module</h3><p>export 与 export default 的区别</p>
-<ul>
-<li>export 与 export default 均可用于导出常量、函数、文件、模块等</li>
-<li>可以在其它文件或模块中通过 import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用</li>
-<li>export default 后面不能跟 const 或 let 的关键词</li>
-<li>export、import 可以有多个，export default 仅有一个。</li>
-<li>通过 export 方式导出，在导入时要加 { }，export default 则不需要</li>
-<li>export<code>具名</code>导出 xxx ，export default<code>匿名</code>。区别在于导入的时候，export 需要<code>一样</code>的名称才能匹配，后者无论取什么名都可以。</li>
-<li>模块化管理中一个文件就是一个模块，export 可以导出多个方法和变量，export default 只能导出当前模块，一个 js 文件中只支持出现一个</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ES Moudle</tag>
-        <tag>CommonJS</tag>
-        <tag>模块化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx</title>
-    <url>/post/65b69107.html</url>
-    <content><![CDATA[<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
-<li>静态资源服务-通过本地文件系统提供服务</li>
-<li>反向代理服务-缓存、负载均衡</li>
-<li><code>API</code>服务-<code>openresty</code></li>
-</ul>
-<h2 id="什么是反向代理？"><a href="#什么是反向代理？" class="headerlink" title="什么是反向代理？"></a>什么是反向代理？</h2><p>什么又是正向代理？</p>
-<p>国内的客户想要直接访问 Google 官网是无法连接的，但如果该用户可以访问某服务器 A，而 A 可以访问 Google 官网，那么客户可以将此服务器 A 设置为代理服务器，借助 A 服务器请求获得 Google 的响应报文，再转发给用户。此时这个服务器 A 称之为正向代理服务器。</p>
-<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/20/172d07ea8b21370a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp"></p>
-<p>反向代理，客户是对代理无感知的。客户只需要向公开的 URL 向代理服务器发送请求，代理服务器再选择目标服务器处理请求并返回数据。</p>
-<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/20/172d07eec6f96cf3~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp"></p>
-<p>总之：</p>
-<ul>
-<li><strong><code>正向代理</code>，其实是<code>代理服务器</code>代理了<code>客户端</code>，去和<code>目标服务器</code>交互</strong></li>
-<li><strong><code>反向代理</code>，<code>代理服务器</code>代理的是<code>目标服务器</code>，去和<code>客户端</code>交互</strong></li>
-</ul>
-<h2 id="Nginx-如何处理请求"><a href="#Nginx-如何处理请求" class="headerlink" title="Nginx 如何处理请求"></a>Nginx 如何处理请求</h2><ol>
-<li><p>接收请求：Nginx 作为服务器软件监听指定的端口，接收客户端发来的请求。</p>
-</li>
-<li><p>解析请求：Nginx 解析请求的内容，包括请求方法（GET、POST 等）、URL、头部信息等。</p>
-</li>
-<li><p>配置匹配：Nginx 根据配置文件中的规则和匹配条件，决定如何处理该请求。配置文件定义了<code>虚拟主机</code>、反向代理、负载均衡、缓存等特定的处理方式。</p>
-</li>
-<li><p>处理请求：Nginx 根据配置的处理方式，可能会进行以下操作：</p>
-<ul>
-<li><p>静态文件服务：如果请求的是静态资源文件，如 HTML、CSS、JavaScript、图片等，Nginx 可以直接返回文件内容，不必经过后端应用程序。</p>
-</li>
-<li><p>反向代理：如果配置了反向代理，Nginx 将请求转发给后端的应用服务器，然后将其响应返回给客户端。这样可以提供负载均衡、高可用性和缓存等功能。</p>
-</li>
-<li><p>缓存：如果启用了缓存，Nginx 可以缓存一些静态或动态内容的响应，在后续相同的请求中直接返回缓存的响应，减少后端负载并提高响应速度。</p>
-</li>
-<li><p>URL 重写：Nginx 可以根据配置的规则对 URL 进行重写，将请求从一个 URL 重定向到另一个 URL 或进行转换。</p>
-</li>
-<li><p>SSL&#x2F;TLS 加密：如果启用了 SSL&#x2F;TLS，Nginx 可以负责加密和解密 HTTPS 请求和响应。</p>
-</li>
-<li><p>访问控制：Nginx 可以根据配置的规则对请求进行访问控制，例如限制 IP 访问、进行身份认证等。</p>
-</li>
-</ul>
-</li>
-<li><p>响应结果：Nginx 根据处理结果生成响应报文，包括状态码、头部信息和响应内容。然后将响应发送给客户端。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>网络请求</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pinia</title>
-    <url>/post/74dce755.html</url>
-    <content><![CDATA[<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul>
-<li>安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install pinia</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>入口文件中引入,将 <code>pinia</code>挂载到 <code>Vue</code>应用中</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(pinia);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建store</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/store/user.<span class="property">ts</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数是应用程序中 store 的唯一 id</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUsersStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;users&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;Jhon&quot;</span>,</span><br><span class="line">            <span class="attr">age</span>: <span class="number">25</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//leii</span></span><br><span class="line">    <span class="attr">getters</span>: &#123;</span><br><span class="line">        <span class="attr">getAddAge</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> state.<span class="property">age</span> + <span class="number">100</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用store</li>
-</ul>
-<p>利用 <code>pinia</code>的 <code>storeToRefs</code>函数，将 <code>state</code>中的数据变为了响应式的。</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/<span class="title class_">App</span>.<span class="property">vue</span></span><br><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; useUsersStore &#125; <span class="keyword">from</span> <span class="string">&quot;../src/store/user&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useUsersStore</span>();</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, sex &#125; = <span class="title function_">storeToRefs</span>(store);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>批量更改数据</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 较少字段的修改方式</span></span><br><span class="line">&lt;button <span class="meta">@click</span>=<span class="string">&quot;patchStore&quot;</span>&gt;批量修改数据&lt;/button&gt;</span><br><span class="line"><span class="comment">// 批量修改数据</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">patchStore</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  store.$patch(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">23</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">store.$patch(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  state.<span class="property">items</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;shoes&#x27;</span>, <span class="attr">quantity</span>: <span class="number">1</span> &#125;)</span><br><span class="line">  state.<span class="property">hasChanged</span> = <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>StateManagement</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Promise</title>
-    <url>/post/54b11a0c.html</url>
-    <content><![CDATA[<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Promise-的基本使用"><a href="#Promise-的基本使用" class="headerlink" title="Promise 的基本使用"></a>Promise 的基本使用</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Promise 接受一个函数作为参数</p>
-</li>
-<li><p>在参数函数中有两个参数</p>
-<ul>
-<li><p>resolve: 成功函数</p>
-</li>
-<li><p>reject: 失败函数</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-Promise-的状态"><a href="#1-Promise-的状态" class="headerlink" title="1) Promise 的状态"></a>1) Promise 的状态</h3><p>第一种状态:<code> pending</code></p>
-<p>第二种状态: <code>fulfilled</code></p>
-<p>第三种状态: <code>rejected</code></p>
-<h3 id="2-Promise-状态的改变"><a href="#2-Promise-状态的改变" class="headerlink" title="2) Promise 状态的改变"></a>2) Promise 状态的改变</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// resolve(): 调用函数, 使当前Promise对象的状态改成fulfilled</span></span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p); <span class="comment">// fulfilled</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// resolve(): 调用函数, 使当前Promise对象的状态改成fulfilled</span></span><br><span class="line">  <span class="comment">// reject(): 调用函数, 使当前Promise对象的状态改成rejected</span></span><br><span class="line">  <span class="comment">// resolve();</span></span><br><span class="line">  <span class="title function_">reject</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>resolve(): 调用函数, 使当前 Promise 对象的状态改成<code>fulfilled</code></li>
-<li>reject(): 调用函数,使当前 Promise 对象状态改成<code>rejected</code></li>
-</ul>
-<h3 id="3-Promise-的结果"><a href="#3-Promise-的结果" class="headerlink" title="3) Promise 的结果"></a>3) Promise 的结果</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 通过调用 resolve,传递参数,改变 当前Promise对象的结果</span></span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&quot;成功的结果&quot;</span>);</span><br><span class="line">  <span class="comment">// resolve();</span></span><br><span class="line">  <span class="comment">// reject(&quot;失败的结果&quot;)</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Promise-的方法"><a href="#Promise-的方法" class="headerlink" title="Promise 的方法"></a>Promise 的方法</h2><h3 id="1-then-方法"><a href="#1-then-方法" class="headerlink" title="1) then 方法"></a>1) then 方法</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 通过调用 resolve,传递参数,改变 当前Promise对象的结果</span></span><br><span class="line">  <span class="comment">// resolve(123);</span></span><br><span class="line">  <span class="title function_">reject</span>(<span class="string">&quot;失败的结果&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//then方法函数</span></span><br><span class="line"><span class="comment">// - 参数</span></span><br><span class="line"><span class="comment">// 两个参数都是函数</span></span><br><span class="line"><span class="comment">// 返回值: 是一个Promise对象</span></span><br><span class="line">p.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//当Promise的状态使fulfilled时执行</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功的回调&quot;</span>, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 当Promise的状态时rejected时, 执行</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败时调用&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在 then 方法中,通过 return 将返回的 Promise 实例改为 fulfilled 状态</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果Promise的状态不改变,then里的方法不会执行</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line"><span class="keyword">const</span> t = p.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>);</span><br><span class="line">    <span class="comment">// 使用return可以将t实例的状态改为fulfilled</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">t.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功2&quot;</span>, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败2&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在 then 方法中,出现代码错误,将返回的 Promise 实例改为 rejected 状态</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果Promise的状态改变,then里的方法不会执行</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> t = p.<span class="property">then</span>.(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>)</span><br><span class="line">  <span class="comment">// 使用return可以将t实例的状态改为fulfilled</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">&#125;,<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 如果这里代码出错,会将t实例的状态改为rejected</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">t.<span class="property">then</span>.(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功2&quot;</span>,value)</span><br><span class="line">&#125;,<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败2&quot;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-catch-方法"><a href="#2-catch-方法" class="headerlink" title="2) catch 方法"></a>2) catch 方法</h3><blockquote>
-<p>示例</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// reject()</span></span><br><span class="line">  <span class="comment">// console.log(a)</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;出错了&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 思考: catch中的参数函数在什么时候被执行</span></span><br><span class="line"><span class="comment">//  1. 当Promise的状态改为rejcted.被执行</span></span><br><span class="line"><span class="comment">//  2. 当Promise执行过程出现代码错误时,被执行</span></span><br><span class="line">p.<span class="title function_">catch</span>((<span class="function"><span class="params">reason</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>, reason)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br></pre></td></tr></table></figure>
-
-<h2 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a>async 和 await</h2><h2 id="1-async-函数"><a href="#1-async-函数" class="headerlink" title="1) async 函数"></a>1) async 函数</h2><ol>
-<li>函数的返回值为 promise 对象</li>
-<li>promise 对象的结果由 async 函数执行的返回值决定</li>
-</ol>
-<p>示例</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 1.如果返回值是一个非Promise类型的数据</span></span><br><span class="line">  <span class="comment">//  return 一个字符串 数字 布尔值等都是成功的Promise对象</span></span><br><span class="line">  <span class="comment">// 2. 如果返回的时一个Promise对象</span></span><br><span class="line">  <span class="comment">//  return new Promise((resolve, reject) =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//  resolve(&quot;OK&quot;) 返回的是成功Promise对象,状态值:[[PromiseState]]:&quot;fulfilled&quot;</span></span><br><span class="line">  <span class="comment">//  reject(&quot;Err&quot;) 返回的是失败Promise对象,状态值:[[PromiseState]]:&quot;rejected&quot;</span></span><br><span class="line">  <span class="comment">// 3. 抛出异常</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="string">&quot;oh No&quot;</span> <span class="comment">// 状态值:[[PromiseState]]:&quot;rejected&quot;,结果是抛出的值</span></span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result = <span class="title function_">main</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br></pre></td></tr></table></figure>
-
-<p>返回值是一个 Promise 对象</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2934759/1615302593894-e1a59c34-08ff-4241-8eba-5512b1718bde.png" alt="img"></p>
-<h2 id="2-await-表达式"><a href="#2-await-表达式" class="headerlink" title="2) await 表达式"></a>2) await 表达式</h2><ol>
-<li>await 右侧的表达式一般为 promise 对象, 但也可以是其它的值</li>
-<li>如果表达式是 promise 对象, await 返回的是 promise 成功的值</li>
-<li>如果表达式是其它值, 直接将此值作为 await 的返回值</li>
-</ol>
-<p>注意</p>
-<ol>
-<li>await 必须写在 async 函数中, 但 async 函数中可以没有 await</li>
-<li>如果 await 的 promise 失败了, 就会抛出异常, 需要通过 try…catch 捕获处理</li>
-</ol>
-<h2 id="3-async-和-await-结合"><a href="#3-async-和-await-结合" class="headerlink" title="3) async 和 await 结合"></a>3) async 和 await 结合</h2><p>示例</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">&quot;util&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> mineReadFile = util.<span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);<span class="comment">// promisify转换为Promise形态的函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 捕获处理</span></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">  	<span class="comment">// 读取第一个文件的内容</span></span><br><span class="line">    <span class="keyword">let</span> data1 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/1.html&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> data2 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/2.html&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> data3 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/3.html&quot;</span>);</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">  	<span class="variable language_">console</span>.<span class="title function_">log</span>(e):</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue</title>
     <url>/post/f8e09374.html</url>
     <content><![CDATA[<h2 id="渐进式-JavaScript-框架"><a href="#渐进式-JavaScript-框架" class="headerlink" title="渐进式 JavaScript 框架"></a>渐进式 JavaScript 框架</h2><h2 id="使用过程中遇到的问题"><a href="#使用过程中遇到的问题" class="headerlink" title="使用过程中遇到的问题"></a>使用过程中遇到的问题</h2><h3 id="属性带不带冒号"><a href="#属性带不带冒号" class="headerlink" title="属性带不带冒号"></a>属性带不带冒号</h3><p>冒号实际上是<code>v-bind:attribute</code>的缩写</p>
@@ -298,11 +173,6 @@
       <tags>
         <tag>vue</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>WELCOME TO MY BLOG 🍾 🪅 🥂 🎉</title>
-    <url>/post/4a17b156.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Repair</title>
@@ -771,41 +641,9 @@
       </tags>
   </entry>
   <entry>
-    <title>css基础</title>
-    <url>/post/eda1a9a9.html</url>
+    <title>WELCOME TO MY BLOG 🍾 🪅 🥂 🎉</title>
+    <url>/post/4a17b156.html</url>
     <content><![CDATA[]]></content>
-      <tags>
-        <tag>css</tag>
-        <tag>样式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java学习</title>
-    <url>/post/c2adefc4.html</url>
-    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
-<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
-</ul>
-<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
-<p>VO是返回给前端用于展示的 </p>
-<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
-<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
-<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
-<p>下面是一个使用DTO和VO的示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
   </entry>
   <entry>
     <title>WebSocket</title>
@@ -879,95 +717,239 @@
       </tags>
   </entry>
   <entry>
-    <title>this指向</title>
-    <url>/post/74520f03.html</url>
-    <content><![CDATA[<h2 id="不同情况下的this指向"><a href="#不同情况下的this指向" class="headerlink" title="不同情况下的this指向"></a>不同情况下的<code>this</code>指向</h2><p>理解函数中的 <code>this</code> 关键字可能需要一些JavaScript中this的上下文的背景知识。在JavaScript中，<code>this</code> 的值是在函数被调用时确定的，并取决于函数的调用方式。</p>
-<p>当你定义一个函数时，它并不与任何特定的对象绑定。然而，当函数被调用时，JavaScript会根据调用方式来确定 <code>this</code> 的值。有几种情况下 <code>this</code> 的值会有所不同：</p>
-<ol>
-<li><p><strong>全局上下文：</strong> 当函数在全局范围内被调用时，<code>this</code> 指向全局对象（在浏览器环境中通常是 <code>window</code>）。</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">globalFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 在浏览器中可能指向 window 对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">globalFunction</span>();</span><br></pre></td></tr></table></figure>
+    <title>Nginx</title>
+    <url>/post/65b69107.html</url>
+    <content><![CDATA[<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>静态资源服务-通过本地文件系统提供服务</li>
+<li>反向代理服务-缓存、负载均衡</li>
+<li><code>API</code>服务-<code>openresty</code></li>
+</ul>
+<h2 id="什么是反向代理？"><a href="#什么是反向代理？" class="headerlink" title="什么是反向代理？"></a>什么是反向代理？</h2><p>什么又是正向代理？</p>
+<p>国内的客户想要直接访问 Google 官网是无法连接的，但如果该用户可以访问某服务器 A，而 A 可以访问 Google 官网，那么客户可以将此服务器 A 设置为代理服务器，借助 A 服务器请求获得 Google 的响应报文，再转发给用户。此时这个服务器 A 称之为正向代理服务器。</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/20/172d07ea8b21370a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp"></p>
+<p>反向代理，客户是对代理无感知的。客户只需要向公开的 URL 向代理服务器发送请求，代理服务器再选择目标服务器处理请求并返回数据。</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/20/172d07eec6f96cf3~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp"></p>
+<p>总之：</p>
+<ul>
+<li><strong><code>正向代理</code>，其实是<code>代理服务器</code>代理了<code>客户端</code>，去和<code>目标服务器</code>交互</strong></li>
+<li><strong><code>反向代理</code>，<code>代理服务器</code>代理的是<code>目标服务器</code>，去和<code>客户端</code>交互</strong></li>
+</ul>
+<h2 id="Nginx-如何处理请求"><a href="#Nginx-如何处理请求" class="headerlink" title="Nginx 如何处理请求"></a>Nginx 如何处理请求</h2><ol>
+<li><p>接收请求：Nginx 作为服务器软件监听指定的端口，接收客户端发来的请求。</p>
 </li>
-<li><p><strong>作为对象方法：</strong> 当函数作为对象的方法被调用时，<code>this</code> 指向调用该函数的对象。</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="title function_">method</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 指向 obj 对象</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">method</span>();</span><br></pre></td></tr></table></figure>
+<li><p>解析请求：Nginx 解析请求的内容，包括请求方法（GET、POST 等）、URL、头部信息等。</p>
 </li>
-<li><p><strong>通过构造函数调用：</strong> 当函数被用作构造函数（通过 <code>new</code> 关键字调用）时，<code>this</code> 指向新创建的对象实例。</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">property</span> = <span class="string">&#x27;value&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 指向新创建的对象实例</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> <span class="title class_">Constructor</span>();</span><br></pre></td></tr></table></figure>
+<li><p>配置匹配：Nginx 根据配置文件中的规则和匹配条件，决定如何处理该请求。配置文件定义了<code>虚拟主机</code>、反向代理、负载均衡、缓存等特定的处理方式。</p>
 </li>
-<li><p><strong>使用 <code>call</code>、<code>apply</code> 或 <code>bind</code> 显式指定 <code>this</code>：</strong> 这些方法允许你显式地指定函数在调用时的 <code>this</code> 值。</p>
- <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">explicitContext</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> explicitObject = &#123; <span class="attr">name</span>: <span class="string">&#x27;Explicit&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line">explicitContext.<span class="title function_">call</span>(explicitObject); <span class="comment">// 使用 call 显式指定 this</span></span><br></pre></td></tr></table></figure></li>
+<li><p>处理请求：Nginx 根据配置的处理方式，可能会进行以下操作：</p>
+<ul>
+<li><p>静态文件服务：如果请求的是静态资源文件，如 HTML、CSS、JavaScript、图片等，Nginx 可以直接返回文件内容，不必经过后端应用程序。</p>
+</li>
+<li><p>反向代理：如果配置了反向代理，Nginx 将请求转发给后端的应用服务器，然后将其响应返回给客户端。这样可以提供负载均衡、高可用性和缓存等功能。</p>
+</li>
+<li><p>缓存：如果启用了缓存，Nginx 可以缓存一些静态或动态内容的响应，在后续相同的请求中直接返回缓存的响应，减少后端负载并提高响应速度。</p>
+</li>
+<li><p>URL 重写：Nginx 可以根据配置的规则对 URL 进行重写，将请求从一个 URL 重定向到另一个 URL 或进行转换。</p>
+</li>
+<li><p>SSL&#x2F;TLS 加密：如果启用了 SSL&#x2F;TLS，Nginx 可以负责加密和解密 HTTPS 请求和响应。</p>
+</li>
+<li><p>访问控制：Nginx 可以根据配置的规则对请求进行访问控制，例如限制 IP 访问、进行身份认证等。</p>
+</li>
+</ul>
+</li>
+<li><p>响应结果：Nginx 根据处理结果生成响应报文，包括状态码、头部信息和响应内容。然后将响应发送给客户端。</p>
+</li>
 </ol>
-<p>现在，回到 <code>Array.from</code> 的 <code>thisArg</code> 参数。在使用 <code>Array.from</code> 时，你可以通过 <code>thisArg</code> 参数指定在映射函数执行时的 <code>this</code> 上下文。这对于确保在映射函数中访问特定的对象属性或方法非常有用，因为在默认情况下，函数内部的 <code>this</code> 可能会指向不同的上下文。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> contextObject = &#123;</span><br><span class="line">  <span class="attr">multiplier</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="title function_">mapFunction</span>(<span class="params">x</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="variable language_">this</span>.<span class="property">multiplier</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arrayLike = &#123; <span class="number">0</span>: <span class="number">1</span>, <span class="number">1</span>: <span class="number">2</span>, <span class="number">2</span>: <span class="number">3</span>, <span class="attr">length</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newArray = <span class="title class_">Array</span>.<span class="title function_">from</span>(arrayLike, contextObject.<span class="property">mapFunction</span>, contextObject);</span><br><span class="line"><span class="comment">// newArray is now [2, 4, 6]</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中，<code>contextObject.mapFunction</code> 是映射函数，通过将 <code>contextObject</code> 作为 <code>thisArg</code> 参数传递给 <code>Array.from</code>，确保映射函数中的 <code>this</code> 指向了 <code>contextObject</code>。这样，映射函数就可以访问 <code>contextObject</code> 的属性 <code>multiplier</code>。</p>
 ]]></content>
       <categories>
-        <category>JavaScript 深入学习</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>函数闭包</title>
-    <url>/post/87bab44d.html</url>
-    <content><![CDATA[<h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p>有权访问另一个函数作用域中的变量的函数，就是闭包。</p>
-<p>这是一种闭包</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">animal</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="string">&quot;dog&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">getName</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">animal</span>();</span><br></pre></td></tr></table></figure>
-
-<p>这也是一种闭包</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&quot;cat&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>name 定义在全局作用域中，getName 在内部输出找不到自己定义的值，因此向外寻找，输出 getName，是一个隐性的闭包。</p>
-]]></content>
-      <categories>
-        <category>JavaScript 深入学习</category>
+        <category>网络请求</category>
       </categories>
       <tags>
-        <tag>closure</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
-    <title>执行上下文栈</title>
-    <url>/post/dec4cd8f.html</url>
-    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
-
-<p>两段代码执行的结果均输出<code>local scope</code></p>
-<blockquote>
-<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
-<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
-</blockquote>
-<p>两端代码的压栈顺序</p>
-<p>答案就是执行上下文栈的变化不一样。</p>
-<p>第一段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
-</blockquote>
-<p>让我们模拟第二段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
-</blockquote>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
+    <title>css布局</title>
+    <url>/post/5a252ba9.html</url>
+    <content><![CDATA[<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p> <strong>block</strong> （块元素）:</p>
 <ul>
-<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
+<li>块元素会在页面中独占行(自上向下垂直排列)</li>
+<li>默认宽度是父元素的全部(会把父元素撑满)</li>
+<li>默认高度是被内容撑开(子元素)</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
-
+<p>一般用于其他标签的容器,常用的块级元素包括 div p h1-h6 hr ul ol li dl dd dt form</p>
+<p> <strong>inline</strong> （行内元素）:</p>
 <ul>
-<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
+<li>行内元素不会独占页面的一行， 只占自身的大小</li>
+<li>行内元素在页面中左向右水平排列，如果一行之中不能容纳下所有的行内元则元素 会换到第二行继续自左向右排列 (书写习惯一致)</li>
+<li>行内元素的默认宽度和高度都是被内容撑开。</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
-
+<p>常用的行内元素包括span a</p>
+<p>行内元素的盒模型</p>
 <ul>
-<li>所有 window 对象的属性拥有全局作用域</li>
+<li>行内元素不支持设置宽度和高度</li>
+<li>行内元素可以设置padding,但是垂直方向padding不会影响页面的布局 ;</li>
+<li>行内元素可以设置border.垂直方向的border不会影响页面的布局;</li>
+<li>行内元素可以设置margin,垂直方向的margin不会影响布局</li>
 </ul>
+<p> <strong>inline-block</strong> （行内元素）:支持宽高，自左向右排列,不独占一行<br>,常用的行内块元素包括img  textarea  input</p>
+<p><strong>none</strong>  :<br>一些特殊元素的默认 display 值是none，例如script, display:none被 JavaScript 用来在不删除元素的情况下隐藏或显示元素。<br>它和visibility属性不一样。把display设置成 none元素不会占据它本来应该显示的空间，但是设置成 visibility: hidden;还会占据空间。</p>
+<h3 id="position"><a href="#position" class="headerlink" title="position"></a>position</h3><p><strong>static</strong> : 静态,默认值,文档流</p>
+<p><strong>relative</strong> :<br>相对定位不脱离文档流,对周围元素的位置没有任何影响<br>如果相对定位不写偏移属性或者偏移量为0,效果与没写定位一样<br>相对自已原来位置做偏移原来的位子不会被占着(不脱离文档流)<br>使用场合<br>①类似于margin(margin挤开,相对定位覆盖其他元素),做自身位置的微调<br>②作为绝对定位的祖先级已定位属性(子绝父相,此处多不写偏移属性)<br>偏移属性的特点: 上下冲突,以top为准 ; 左右冲突,以left为准</p>
+<p><strong>fixed</strong> :<br>将元素固定在页面上某个位置,不会随着滚动条滚动,变化位置</p>
+<p>一直固定在可视区域  , 一个固定定位（position属性的值为fixed）元素会相对于视窗来定位，这意味着即便页面滚动，它还是会停留在相同的位置。和relative一样，top、right、bottom和left属性都可用。一个固定定位元素不会保留它原本在页面应有的空隙，即之后添加的元素会占用他之前的位置。</p>
+<p><strong>absolute</strong> :<br>绝对定位脱离文档流<br>1.没有已定位的祖先级元素,相对body左上角偏移</p>
+<p>2.相对于,离自己最近的,已定位的,祖先级元素的左上角做偏移</p>
+<p>注意:最适合把祖先级变成已定位元素的样式,relative</p>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>通过浮动可以使一个元素 向其父元素的左侧或右侧移动 使用float 属性来设置于元素的浮动<br>可选值: none 默认值，元素不浮动<br>left 元素向左浮动<br>right 元素向右浮动<br>注意，元素设置浮动以后，水平布局的等式便不需要强制成立<br>元素设置浮动以后，会完全从文档流中脱离，不再占用文档流的位置， 所以元素 下边的还在文档流中的元素会自动向上移动</p>
+<p>浮动的特点:</p>
+<ol>
+<li>浮动元素会完全脱离文档流，不再占据文档流中的位置</li>
+<li>设置浮动以后元素会向父元素的左侧或右侧移动，</li>
+<li>浮动元素默认不会从父元素中移出</li>
+<li>浮动元素向左或向右移动时，不会超过它前边的其他浮动元素</li>
+<li>如果浮动元素的上边是一个没有浮动的块元素，则浮动元素无法上移</li>
+<li>浮动元素不会超过它上边的浮动的兄弟元素，最多最多就是和它一样高</li>
+</ol>
+<p>浮动目前来讲它的主要作用就是让页面中的元素可以水平排列，<br>通过浮动可以制作一些水平方向的布局<br>浮动元素不会盖住文字，文字会自动环绕在浮动元素的周围，<br>所以我们可以利用浮动来设置文字环绕图片的效果<br>元素设置浮动以后，将会从文档流中脱离，从文档流中脱离后，元素的一些特点也会发变化<br>脱离文档流的特点:</p>
+<p>块元素:</p>
+<ul>
+<li>块元素不在独占页面的一行</li>
+<li>脱离文档流以后，块元素的宽度和高度默认都被内容撑开</li>
+</ul>
+<p>行内元素:</p>
+<ul>
+<li>行内元素脱离文档流以后会变成块元素（可设置宽高），特点和块元素一样</li>
+<li>脱离文档流以后，不需要再区分块和行内了</li>
+</ul>
+<p><strong>clear</strong> :<br>float属性被用于控制浮动。即元素浮动之后，周围的元素会重新排列，为了避免这种情况，使用clear属性，clear属性指定元素两侧不能出现浮动元素。</p>
+<p><strong>清除浮动</strong><br>在一个div中放一张图片，有时候图片会超出div的范围，这个时候我们需要这样做，给div加上此属性</p>
+<p><code>.clearfix &#123;   overflow: auto; &#125;</code></p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p>容器的属性</p>
+<ul>
+<li>flex-direction（主轴方向）</li>
+<li>flex-wrap（是否换行）</li>
+<li>flex-flow（主轴方向与是否换行的简写形式）</li>
+<li>justify-content（在长度上的排列方式）</li>
+<li>align-items（在宽度上的排列方式）</li>
+<li>align-content（行间距）</li>
+</ul>
+<p><strong>flex-direction</strong> :<br>属性决定主轴的方向（即项目的排列方向）<br>, 可以理解为元素排列的起点在哪里，沿哪个方向排列。把显示屏比喻为一张纸的话，该属性决定了第一个字在哪个角开始写以及第一行字写的方向</p>
+<p>row（默认值）：主轴为水平方向，起点在左端。</p>
+<p>row-reverse：主轴为水平方向，起点在右端。</p>
+<p>column：主轴为垂直方向，起点在上沿。</p>
+<p>column-reverse：主轴为垂直方向，起点在下沿。</p>
+<p><strong>flex-wrap</strong> :<br>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行, 把显示屏比喻为一张纸的话，该属性决定了一行字写完以后换行不换行（假设是字可以一直缩小，不换行且继续新增的话，字会背挤的越来越小）</p>
+<p>nowrap（默认）：不换行。</p>
+<p>wrap：换行，第一行在上方。</p>
+<p>wrap-reverse：换行，第一行在下方。</p>
+<p><strong>flex-flow</strong></p>
+<p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+<p><strong>justify-content</strong> :<br>justify-content属性定义了项目在主轴上的对齐方式，可以理解为在显示屏的长度这个方向上元素的排列方式 , 把显示屏比喻为一张纸的话，该属性决定了在这一行的字的排列方式</p>
+<p>flex-start（默认值）：左对齐</p>
+<p>flex-end：右对齐</p>
+<p>center： 居中</p>
+<p>space-between：两端对齐，项目之间的间隔都相等。</p>
+<p>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</p>
+<p><strong>align-items</strong> :<br>align-items属性定义项目在交叉轴上如何对齐<br>可以理解为在显示屏的宽度上元素的排列方式，把显示屏比喻为一张纸的话，该属性决定第一行字距离纸的边距距离</p>
+<p>flex-start：交叉轴的起点对齐。</p>
+<p>flex-end：交叉轴的终点对齐。</p>
+<p>center：交叉轴的中点对齐。</p>
+<p>baseline: 项目的第一行文字的基线对齐。</p>
+<p>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</p>
+<p><strong>align-content</strong> :<br>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用, 可以理解为行与行之间的间隔距离，把显示屏比喻为一张纸的话，该属性决定第行间距</p>
+<p>flex-start：与交叉轴的起点对齐。</p>
+<p>flex-end：与交叉轴的终点对齐。</p>
+<p>center：与交叉轴的中点对齐。</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<p>stretch（默认值）：轴线占满整个交叉轴。（平均铺满显示器）</p>
+<p>作者：Dev_<br>链接：<a href="https://juejin.cn/post/7184450056206942245">https://juejin.cn/post/7184450056206942245</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 ]]></content>
-      <categories>
-        <category>JavaScript 深入学习</category>
-      </categories>
       <tags>
-        <tag>上下文</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css基础</title>
+    <url>/post/eda1a9a9.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>样式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Promise</title>
+    <url>/post/54b11a0c.html</url>
+    <content><![CDATA[<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Promise-的基本使用"><a href="#Promise-的基本使用" class="headerlink" title="Promise 的基本使用"></a>Promise 的基本使用</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Promise 接受一个函数作为参数</p>
+</li>
+<li><p>在参数函数中有两个参数</p>
+<ul>
+<li><p>resolve: 成功函数</p>
+</li>
+<li><p>reject: 失败函数</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-Promise-的状态"><a href="#1-Promise-的状态" class="headerlink" title="1) Promise 的状态"></a>1) Promise 的状态</h3><p>第一种状态:<code> pending</code></p>
+<p>第二种状态: <code>fulfilled</code></p>
+<p>第三种状态: <code>rejected</code></p>
+<h3 id="2-Promise-状态的改变"><a href="#2-Promise-状态的改变" class="headerlink" title="2) Promise 状态的改变"></a>2) Promise 状态的改变</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// resolve(): 调用函数, 使当前Promise对象的状态改成fulfilled</span></span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p); <span class="comment">// fulfilled</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// resolve(): 调用函数, 使当前Promise对象的状态改成fulfilled</span></span><br><span class="line">  <span class="comment">// reject(): 调用函数, 使当前Promise对象的状态改成rejected</span></span><br><span class="line">  <span class="comment">// resolve();</span></span><br><span class="line">  <span class="title function_">reject</span>();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>resolve(): 调用函数, 使当前 Promise 对象的状态改成<code>fulfilled</code></li>
+<li>reject(): 调用函数,使当前 Promise 对象状态改成<code>rejected</code></li>
+</ul>
+<h3 id="3-Promise-的结果"><a href="#3-Promise-的结果" class="headerlink" title="3) Promise 的结果"></a>3) Promise 的结果</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 通过调用 resolve,传递参数,改变 当前Promise对象的结果</span></span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&quot;成功的结果&quot;</span>);</span><br><span class="line">  <span class="comment">// resolve();</span></span><br><span class="line">  <span class="comment">// reject(&quot;失败的结果&quot;)</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-的方法"><a href="#Promise-的方法" class="headerlink" title="Promise 的方法"></a>Promise 的方法</h2><h3 id="1-then-方法"><a href="#1-then-方法" class="headerlink" title="1) then 方法"></a>1) then 方法</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 通过调用 resolve,传递参数,改变 当前Promise对象的结果</span></span><br><span class="line">  <span class="comment">// resolve(123);</span></span><br><span class="line">  <span class="title function_">reject</span>(<span class="string">&quot;失败的结果&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//then方法函数</span></span><br><span class="line"><span class="comment">// - 参数</span></span><br><span class="line"><span class="comment">// 两个参数都是函数</span></span><br><span class="line"><span class="comment">// 返回值: 是一个Promise对象</span></span><br><span class="line">p.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//当Promise的状态使fulfilled时执行</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功的回调&quot;</span>, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 当Promise的状态时rejected时, 执行</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败时调用&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">dir</span>(p);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 then 方法中,通过 return 将返回的 Promise 实例改为 fulfilled 状态</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果Promise的状态不改变,then里的方法不会执行</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line"><span class="keyword">const</span> t = p.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>);</span><br><span class="line">    <span class="comment">// 使用return可以将t实例的状态改为fulfilled</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">t.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功2&quot;</span>, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败2&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 then 方法中,出现代码错误,将返回的 Promise 实例改为 rejected 状态</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果Promise的状态改变,then里的方法不会执行</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> t = p.<span class="property">then</span>.(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>)</span><br><span class="line">  <span class="comment">// 使用return可以将t实例的状态改为fulfilled</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">&#125;,<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 如果这里代码出错,会将t实例的状态改为rejected</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">t.<span class="property">then</span>.(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功2&quot;</span>,value)</span><br><span class="line">&#125;,<span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败2&quot;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-catch-方法"><a href="#2-catch-方法" class="headerlink" title="2) catch 方法"></a>2) catch 方法</h3><blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// reject()</span></span><br><span class="line">  <span class="comment">// console.log(a)</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;出错了&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 思考: catch中的参数函数在什么时候被执行</span></span><br><span class="line"><span class="comment">//  1. 当Promise的状态改为rejcted.被执行</span></span><br><span class="line"><span class="comment">//  2. 当Promise执行过程出现代码错误时,被执行</span></span><br><span class="line">p.<span class="title function_">catch</span>((<span class="function"><span class="params">reason</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>, reason)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br></pre></td></tr></table></figure>
+
+<h2 id="async-和-await"><a href="#async-和-await" class="headerlink" title="async 和 await"></a>async 和 await</h2><h2 id="1-async-函数"><a href="#1-async-函数" class="headerlink" title="1) async 函数"></a>1) async 函数</h2><ol>
+<li>函数的返回值为 promise 对象</li>
+<li>promise 对象的结果由 async 函数执行的返回值决定</li>
+</ol>
+<p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 1.如果返回值是一个非Promise类型的数据</span></span><br><span class="line">  <span class="comment">//  return 一个字符串 数字 布尔值等都是成功的Promise对象</span></span><br><span class="line">  <span class="comment">// 2. 如果返回的时一个Promise对象</span></span><br><span class="line">  <span class="comment">//  return new Promise((resolve, reject) =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//  resolve(&quot;OK&quot;) 返回的是成功Promise对象,状态值:[[PromiseState]]:&quot;fulfilled&quot;</span></span><br><span class="line">  <span class="comment">//  reject(&quot;Err&quot;) 返回的是失败Promise对象,状态值:[[PromiseState]]:&quot;rejected&quot;</span></span><br><span class="line">  <span class="comment">// 3. 抛出异常</span></span><br><span class="line">  <span class="keyword">throw</span> <span class="string">&quot;oh No&quot;</span> <span class="comment">// 状态值:[[PromiseState]]:&quot;rejected&quot;,结果是抛出的值</span></span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result = <span class="title function_">main</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br></pre></td></tr></table></figure>
+
+<p>返回值是一个 Promise 对象</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2934759/1615302593894-e1a59c34-08ff-4241-8eba-5512b1718bde.png" alt="img"></p>
+<h2 id="2-await-表达式"><a href="#2-await-表达式" class="headerlink" title="2) await 表达式"></a>2) await 表达式</h2><ol>
+<li>await 右侧的表达式一般为 promise 对象, 但也可以是其它的值</li>
+<li>如果表达式是 promise 对象, await 返回的是 promise 成功的值</li>
+<li>如果表达式是其它值, 直接将此值作为 await 的返回值</li>
+</ol>
+<p>注意</p>
+<ol>
+<li>await 必须写在 async 函数中, 但 async 函数中可以没有 await</li>
+<li>如果 await 的 promise 失败了, 就会抛出异常, 需要通过 try…catch 捕获处理</li>
+</ol>
+<h2 id="3-async-和-await-结合"><a href="#3-async-和-await-结合" class="headerlink" title="3) async 和 await 结合"></a>3) async 和 await 结合</h2><p>示例</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">&quot;util&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> mineReadFile = util.<span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);<span class="comment">// promisify转换为Promise形态的函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// 捕获处理</span></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">  	<span class="comment">// 读取第一个文件的内容</span></span><br><span class="line">    <span class="keyword">let</span> data1 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/1.html&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> data2 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/2.html&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> data3 = <span class="keyword">await</span> <span class="title function_">mineReadFile</span>(<span class="string">&quot;./resource/3.html&quot;</span>);</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">  	<span class="variable language_">console</span>.<span class="title function_">log</span>(e):</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>javaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1043,6 +1025,185 @@
       </tags>
   </entry>
   <entry>
+    <title>java学习</title>
+    <url>/post/c2adefc4.html</url>
+    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
+<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
+</ul>
+<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
+<p>VO是返回给前端用于展示的 </p>
+<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
+<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
+<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
+<p>下面是一个使用DTO和VO的示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数闭包</title>
+    <url>/post/87bab44d.html</url>
+    <content><![CDATA[<h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p>有权访问另一个函数作用域中的变量的函数，就是闭包。</p>
+<p>这是一种闭包</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">animal</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="string">&quot;dog&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">getName</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">animal</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这也是一种闭包</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&quot;cat&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>name 定义在全局作用域中，getName 在内部输出找不到自己定义的值，因此向外寻找，输出 getName，是一个隐性的闭包。</p>
+]]></content>
+      <categories>
+        <category>JavaScript 深入学习</category>
+      </categories>
+      <tags>
+        <tag>closure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this指向</title>
+    <url>/post/74520f03.html</url>
+    <content><![CDATA[<h2 id="不同情况下的this指向"><a href="#不同情况下的this指向" class="headerlink" title="不同情况下的this指向"></a>不同情况下的<code>this</code>指向</h2><p>理解函数中的 <code>this</code> 关键字可能需要一些JavaScript中this的上下文的背景知识。在JavaScript中，<code>this</code> 的值是在函数被调用时确定的，并取决于函数的调用方式。</p>
+<p>当你定义一个函数时，它并不与任何特定的对象绑定。然而，当函数被调用时，JavaScript会根据调用方式来确定 <code>this</code> 的值。有几种情况下 <code>this</code> 的值会有所不同：</p>
+<ol>
+<li><p><strong>全局上下文：</strong> 当函数在全局范围内被调用时，<code>this</code> 指向全局对象（在浏览器环境中通常是 <code>window</code>）。</p>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">globalFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 在浏览器中可能指向 window 对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">globalFunction</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>作为对象方法：</strong> 当函数作为对象的方法被调用时，<code>this</code> 指向调用该函数的对象。</p>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="title function_">method</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 指向 obj 对象</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">method</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>通过构造函数调用：</strong> 当函数被用作构造函数（通过 <code>new</code> 关键字调用）时，<code>this</code> 指向新创建的对象实例。</p>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">property</span> = <span class="string">&#x27;value&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 指向新创建的对象实例</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> <span class="title class_">Constructor</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用 <code>call</code>、<code>apply</code> 或 <code>bind</code> 显式指定 <code>this</code>：</strong> 这些方法允许你显式地指定函数在调用时的 <code>this</code> 值。</p>
+ <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">explicitContext</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> explicitObject = &#123; <span class="attr">name</span>: <span class="string">&#x27;Explicit&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line">explicitContext.<span class="title function_">call</span>(explicitObject); <span class="comment">// 使用 call 显式指定 this</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>现在，回到 <code>Array.from</code> 的 <code>thisArg</code> 参数。在使用 <code>Array.from</code> 时，你可以通过 <code>thisArg</code> 参数指定在映射函数执行时的 <code>this</code> 上下文。这对于确保在映射函数中访问特定的对象属性或方法非常有用，因为在默认情况下，函数内部的 <code>this</code> 可能会指向不同的上下文。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> contextObject = &#123;</span><br><span class="line">  <span class="attr">multiplier</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="title function_">mapFunction</span>(<span class="params">x</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="variable language_">this</span>.<span class="property">multiplier</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arrayLike = &#123; <span class="number">0</span>: <span class="number">1</span>, <span class="number">1</span>: <span class="number">2</span>, <span class="number">2</span>: <span class="number">3</span>, <span class="attr">length</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newArray = <span class="title class_">Array</span>.<span class="title function_">from</span>(arrayLike, contextObject.<span class="property">mapFunction</span>, contextObject);</span><br><span class="line"><span class="comment">// newArray is now [2, 4, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>contextObject.mapFunction</code> 是映射函数，通过将 <code>contextObject</code> 作为 <code>thisArg</code> 参数传递给 <code>Array.from</code>，确保映射函数中的 <code>this</code> 指向了 <code>contextObject</code>。这样，映射函数就可以访问 <code>contextObject</code> 的属性 <code>multiplier</code>。</p>
+]]></content>
+      <categories>
+        <category>JavaScript 深入学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学习记录</title>
+    <url>/post/8ad1a2bc.html</url>
+    <content><![CDATA[<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="网络请求的过程"><a href="#网络请求的过程" class="headerlink" title="网络请求的过程"></a>网络请求的过程</h3><ol>
+<li><a href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90">域名解析（DNS服务器）</a></li>
+<li><strong>TCP三次握手 （自行复述一遍）</strong></li>
+<li><strong>HTTP发送请求</strong></li>
+<li><strong>服务器处理并返回HTTP报文</strong></li>
+<li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90">浏览器解析</a></li>
+</ol>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><ul>
+<li><a href="https://juejin.cn/post/6935232082482298911">浏览器的主要进程</a></li>
+<li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98">浏览器缓存</a></li>
+</ul>
+<h3 id="相关内容详情"><a href="#相关内容详情" class="headerlink" title="相关内容详情"></a>相关内容详情</h3><h3 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a><strong>域名解析</strong></h3><ul>
+<li><strong>递归&#x2F;迭代查询 ？</strong></li>
+<li><strong>DNS优化（多级缓存，负载均衡）</strong></li>
+<li><strong>网络模型</strong></li>
+</ul>
+<h3 id="浏览器解析"><a href="#浏览器解析" class="headerlink" title="浏览器解析"></a><strong>浏览器解析</strong></h3><h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a><strong>浏览器缓存</strong></h3><p><img src="https://oooooo.oss-cn-fuzhou.aliyuncs.com/readme/202312171207005.png" alt="image-20231217120649227"></p>
+<ul>
+<li><p><strong>强缓存（Expires&#x2F;Cache-Control），响应头中有 cache-control 或 expires 字段，代表该资源是强缓存</strong></p>
+<blockquote>
+<p><strong>向浏览器缓存查找该请求结果，根据该结果的缓存规则来确定是否使用该缓存结果的过程</strong></p>
+</blockquote>
+<p><strong>Cache-Control优先级大于Expires</strong><br><strong>为什么使用Cache-Control：Expires根据本地时间判断，可能被修改</strong></p>
+</li>
+<li><p><strong>协商缓存（Last-Modified&#x2F;Etag）</strong></p>
+<blockquote>
+<p><strong>（触发条件）</strong></p>
+<p><strong>1、Cache-Control 的值为 no-cache （协商缓存）</strong></p>
+<p><strong>2、Cache-Control: max-age&#x3D;0</strong></p>
+</blockquote>
+<p><strong>为什么使用Etag：1.文件修改频繁1s内修改n次 2.周期性更改但内容不变</strong></p>
+</li>
+<li><p><strong>缓存位置</strong></p>
+</li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><ul>
+<li>**标准盒模型：只包含 **<code>content</code> 。</li>
+<li><strong>IE（替代）盒模型：</strong><code>content + padding + border</code></li>
+</ul>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><p><strong>基本选择器：</strong></p>
+<ul>
+<li>通配符选择器 <code>*</code>：匹配所有元素。</li>
+<li>元素选择器：通过元素的标签名进行选择，例如 <code>div</code>、<code>p</code>、<code>span</code> 等。</li>
+<li>类选择器 <code>.classname</code>：选择具有指定类名的元素。</li>
+<li>ID 选择器 <code>#idname</code>：选择具有指定 ID 的元素。</li>
+</ul>
+</li>
+<li><p><strong>组合选择器：</strong></p>
+<ul>
+<li>后代选择器（空格）：选择作为另一个元素后代的元素，例如 <code>div p</code> 选择所有 <code>&lt;p&gt;</code> 元素，但仅在其内部的 <code>&lt;div&gt;</code> 元素中。</li>
+<li>相邻兄弟选择器（+）：选择紧接在另一个元素后的兄弟元素，例如 <code>h2 + p</code> 选择紧接在 <code>&lt;h2&gt;</code> 元素后的 <code>&lt;p&gt;</code> 元素。</li>
+<li>兄弟选择器（~）：选择所有指定元素之后的兄弟元素，例如 <code>h2 ~ p</code> 选择所有 <code>&lt;h2&gt;</code> 元素之后的所有 <code>&lt;p&gt;</code> 元素。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 后代选择器 */</span></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">    <span class="comment">/* 将所有 &lt;div&gt; 元素内部的 &lt;p&gt; 元素的文字颜色设为绿色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 相邻兄弟选择器 */</span></span><br><span class="line"><span class="selector-tag">h2</span> + <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="comment">/* 将所有紧跟在 &lt;h2&gt; 元素后面的 &lt;p&gt; 元素的文字加粗 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 兄弟选择器 */</span></span><br><span class="line"><span class="selector-tag">h2</span> ~ <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">    <span class="comment">/* 将所有跟在 &lt;h2&gt; 元素后面的 &lt;p&gt; 元素的文字添加下划线 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>属性选择器：</strong></p>
+<ul>
+<li>属性存在选择器 <code>[attr]</code>：选择具有指定属性的元素，例如 <code>[title]</code> 选择所有具有 title 属性的元素。</li>
+<li>属性值选择器 <code>[attr=value]</code>：选择具有指定属性值的元素，例如 <code>[type=text]</code> 选择所有 type 属性值为 “text” 的元素。</li>
+<li>子串匹配属性选择器 <code>[attr~=value]</code>、<code>[attr|=value]</code>、<code>[attr^=value]</code>、<code>[attr$=value]</code>、<code>[attr*=value]</code>：分别表示属性值包含指定值、以指定值开头、以指定值结尾、等于指定值、包含指定值的元素。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 属性存在选择器 */</span></span><br><span class="line"><span class="selector-attr">[title]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: purple;</span><br><span class="line">    <span class="comment">/* 将所有具有 title 属性的元素的文字颜色设为紫色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 属性值选择器 */</span></span><br><span class="line"><span class="selector-attr">[type=text]</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">    <span class="comment">/* 将所有 type 属性值为 &quot;text&quot; 的元素的背景颜色设为浅蓝色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 子串匹配属性选择器 */</span></span><br><span class="line"><span class="selector-attr">[title~=example]</span> &#123;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">    <span class="comment">/* 将所有 title 属性值中包含 &quot;example&quot; 的元素的文字样式设为斜体 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 子串匹配属性选择器 */</span></span><br><span class="line"><span class="selector-attr">[href^=https]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">    <span class="comment">/* 将所有 href 属性值以 &quot;https&quot; 开头的链接的文字颜色设为蓝色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>伪类&#x2F;元素选择器：</strong></p>
+<ul>
+<li>链接伪类：<code>:link</code>、<code>:visited</code>、<code>:hover</code>、<code>:active</code>、<code>:focus</code> 分别表示未访问、已访问、鼠标悬停、激活、获取焦点状态的链接。</li>
+<li>父系伪类：<code>:first-child</code>、<code>:last-child</code>、<code>:nth-child(n)</code> 分别表示第一个子元素、最后一个子元素、第 n 个子元素。</li>
+<li>其他伪类：<code>:nth-of-type(n)</code>、<code>:not(selector)</code>、<code>:root</code> 等。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 链接伪类 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">    <span class="comment">/* 将所有未访问的链接的文字颜色设为蓝色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 父系伪类 */</span></span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="comment">/* 将所有列表中第一个子元素的文字加粗 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 其他伪类 */</span></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:nth-of-type</span>(odd) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: lightgray;</span><br><span class="line">    <span class="comment">/* 将所有奇数序号的 &lt;p&gt; 元素的背景颜色设为浅灰色 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h4><p>优先级是由 <code>A</code> 、<code>B</code>、<code>C</code>、<code>D</code> 的值来决定的，其中它们的值计算规则如下：</p>
+<ol>
+<li>如果存在内联样式，那么 <code>A = 1</code>, 否则 <code>A = 0</code>;</li>
+<li><code>B</code> 的值等于 <code>ID选择器</code> 出现的次数;</li>
+<li><code>C</code> 的值等于 <code>类选择器</code> 和 <code>属性选择器</code> 和 <code>伪类</code> 出现的总次数;</li>
+<li><code>D</code> 的值等于 <code>标签选择器</code> 和 <code>伪元素</code> 出现的总次数 。</li>
+</ol>
+</li>
+</ul>
+<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><ul>
+<li><p><input disabled="" type="checkbox"> 
+普通流</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+浮动</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+绝对定位</p>
+</li>
+</ul>
+<h3 id="CSS布局"><a href="#CSS布局" class="headerlink" title="CSS布局"></a>CSS布局</h3><p>display</p>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数组方法</title>
     <url>/post/4f9a43e7.html</url>
     <content><![CDATA[<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
@@ -1098,8 +1259,7 @@
     <title>浏览器如何保持登录</title>
     <url>/post/e190ec45.html</url>
     <content><![CDATA[<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p><img src="https://oooooo.oss-cn-fuzhou.aliyuncs.com/readme/202401061432265.png" alt="image-20240106143226574"></p>
-<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>xxxxxxxxxx updated:markdown</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getSession().setAttribute(USER_LOGIN_STATE, user);</span><br></pre></td></tr></table></figure>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getSession().setAttribute(USER_LOGIN_STATE, user);</span><br></pre></td></tr></table></figure>
 
 <p>通过 <code>request.getSession().setAttribute(USER_LOGIN_STATE, user);</code> 设置属性时，实际上将用户登录状态信息安全地存储在服务器端的 <code>HttpSession</code> 对象中。该 <code>HttpSession</code> 对象在服务器上被创建和管理（所有的请求都会被存储，由serverlet来管理），其中的属性数据被保存在服务器端。</p>
 <p>接着，通过将 <code>JSESSIONID</code> 发送给客户端，并在后续的请求中通过 Cookie 携带回来，服务器能够根据这个 <code>JSESSIONID</code> 找到相应的 <code>HttpSession</code> 对象。通过 <code>getAttribute</code> 方法，我们可以从这个 <code>HttpSession</code> 中安全地读取属性信息，如用户登录状态。</p>
@@ -1113,6 +1273,52 @@
         <tag>cookie</tag>
         <tag>session</tag>
         <tag>token</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>执行上下文栈</title>
+    <url>/post/dec4cd8f.html</url>
+    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
+
+<p>两段代码执行的结果均输出<code>local scope</code></p>
+<blockquote>
+<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
+<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
+</blockquote>
+<p>两端代码的压栈顺序</p>
+<p>答案就是执行上下文栈的变化不一样。</p>
+<p>第一段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
+</blockquote>
+<p>让我们模拟第二段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
+</blockquote>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
+<ul>
+<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有 window 对象的属性拥有全局作用域</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript 深入学习</category>
+      </categories>
+      <tags>
+        <tag>上下文</tag>
       </tags>
   </entry>
   <entry>

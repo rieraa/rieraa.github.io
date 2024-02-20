@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>css布局 | </title><meta name="author" content="rieraa"><meta name="copyright" content="rieraa"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="display block （块元素）:  块元素会在页面中独占行(自上向下垂直排列) 默认宽度是父元素的全部(会把父元素撑满) 默认高度是被内容撑开(子元素)  一般用于其他标签的容器,常用的块级元素包括 div p h1-h6 hr ul ol li dl dd dt form  inline （行内元素）:  行内元素不会独占页面的一行， 只占自身的大小 行内元素在页面中左向右水平排列，如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css布局">
+<meta property="og:url" content="https://rieraa.github.io/post/5a252ba9.html">
+<meta property="og:site_name">
+<meta property="og:description" content="display block （块元素）:  块元素会在页面中独占行(自上向下垂直排列) 默认宽度是父元素的全部(会把父元素撑满) 默认高度是被内容撑开(子元素)  一般用于其他标签的容器,常用的块级元素包括 div p h1-h6 hr ul ol li dl dd dt form  inline （行内元素）:  行内元素不会独占页面的一行， 只占自身的大小 行内元素在页面中左向右水平排列，如果">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rieraa.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2024-02-20T09:55:31.000Z">
+<meta property="article:modified_time" content="2024-02-20T10:01:56.167Z">
+<meta property="article:author" content="rieraa">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rieraa.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://rieraa.github.io/post/5a252ba9.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'css布局',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-20 18:01:56'
+}</script><!--include ./head/noscript.pug--><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 0 || hour >= 1
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><link rel="stylesheet" href="/css/transpancy.css"><div class="aplayer no-destroy" data-id="8794872855" data-server="netease"  data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><meta name="generator" content="Hexo 6.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/progress_bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(45deg, #001f3f, #284165, #59341a, #820224)"><nav id="nav"><span id="blog-info"><a href="/" title=""></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span>搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">css布局</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-20T09:55:31.000Z" title="发表于 2024-02-20 17:55:31">2024-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-20T10:01:56.167Z" title="更新于 2024-02-20 18:01:56">2024-02-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="css布局"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p> <strong>block</strong> （块元素）:</p>
+<ul>
+<li>块元素会在页面中独占行(自上向下垂直排列)</li>
+<li>默认宽度是父元素的全部(会把父元素撑满)</li>
+<li>默认高度是被内容撑开(子元素)</li>
+</ul>
+<p>一般用于其他标签的容器,常用的块级元素包括 div p h1-h6 hr ul ol li dl dd dt form</p>
+<p> <strong>inline</strong> （行内元素）:</p>
+<ul>
+<li>行内元素不会独占页面的一行， 只占自身的大小</li>
+<li>行内元素在页面中左向右水平排列，如果一行之中不能容纳下所有的行内元则元素 会换到第二行继续自左向右排列 (书写习惯一致)</li>
+<li>行内元素的默认宽度和高度都是被内容撑开。</li>
+</ul>
+<p>常用的行内元素包括span a</p>
+<p>行内元素的盒模型</p>
+<ul>
+<li>行内元素不支持设置宽度和高度</li>
+<li>行内元素可以设置padding,但是垂直方向padding不会影响页面的布局 ;</li>
+<li>行内元素可以设置border.垂直方向的border不会影响页面的布局;</li>
+<li>行内元素可以设置margin,垂直方向的margin不会影响布局</li>
+</ul>
+<p> <strong>inline-block</strong> （行内元素）:支持宽高，自左向右排列,不独占一行<br>,常用的行内块元素包括img  textarea  input</p>
+<p><strong>none</strong>  :<br>一些特殊元素的默认 display 值是none，例如script, display:none被 JavaScript 用来在不删除元素的情况下隐藏或显示元素。<br>它和visibility属性不一样。把display设置成 none元素不会占据它本来应该显示的空间，但是设置成 visibility: hidden;还会占据空间。</p>
+<h3 id="position"><a href="#position" class="headerlink" title="position"></a>position</h3><p><strong>static</strong> : 静态,默认值,文档流</p>
+<p><strong>relative</strong> :<br>相对定位不脱离文档流,对周围元素的位置没有任何影响<br>如果相对定位不写偏移属性或者偏移量为0,效果与没写定位一样<br>相对自已原来位置做偏移原来的位子不会被占着(不脱离文档流)<br>使用场合<br>①类似于margin(margin挤开,相对定位覆盖其他元素),做自身位置的微调<br>②作为绝对定位的祖先级已定位属性(子绝父相,此处多不写偏移属性)<br>偏移属性的特点: 上下冲突,以top为准 ; 左右冲突,以left为准</p>
+<p><strong>fixed</strong> :<br>将元素固定在页面上某个位置,不会随着滚动条滚动,变化位置</p>
+<p>一直固定在可视区域  , 一个固定定位（position属性的值为fixed）元素会相对于视窗来定位，这意味着即便页面滚动，它还是会停留在相同的位置。和relative一样，top、right、bottom和left属性都可用。一个固定定位元素不会保留它原本在页面应有的空隙，即之后添加的元素会占用他之前的位置。</p>
+<p><strong>absolute</strong> :<br>绝对定位脱离文档流<br>1.没有已定位的祖先级元素,相对body左上角偏移</p>
+<p>2.相对于,离自己最近的,已定位的,祖先级元素的左上角做偏移</p>
+<p>注意:最适合把祖先级变成已定位元素的样式,relative</p>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>通过浮动可以使一个元素 向其父元素的左侧或右侧移动 使用float 属性来设置于元素的浮动<br>可选值: none 默认值，元素不浮动<br>left 元素向左浮动<br>right 元素向右浮动<br>注意，元素设置浮动以后，水平布局的等式便不需要强制成立<br>元素设置浮动以后，会完全从文档流中脱离，不再占用文档流的位置， 所以元素 下边的还在文档流中的元素会自动向上移动</p>
+<p>浮动的特点:</p>
+<ol>
+<li>浮动元素会完全脱离文档流，不再占据文档流中的位置</li>
+<li>设置浮动以后元素会向父元素的左侧或右侧移动，</li>
+<li>浮动元素默认不会从父元素中移出</li>
+<li>浮动元素向左或向右移动时，不会超过它前边的其他浮动元素</li>
+<li>如果浮动元素的上边是一个没有浮动的块元素，则浮动元素无法上移</li>
+<li>浮动元素不会超过它上边的浮动的兄弟元素，最多最多就是和它一样高</li>
+</ol>
+<p>浮动目前来讲它的主要作用就是让页面中的元素可以水平排列，<br>通过浮动可以制作一些水平方向的布局<br>浮动元素不会盖住文字，文字会自动环绕在浮动元素的周围，<br>所以我们可以利用浮动来设置文字环绕图片的效果<br>元素设置浮动以后，将会从文档流中脱离，从文档流中脱离后，元素的一些特点也会发变化<br>脱离文档流的特点:</p>
+<p>块元素:</p>
+<ul>
+<li>块元素不在独占页面的一行</li>
+<li>脱离文档流以后，块元素的宽度和高度默认都被内容撑开</li>
+</ul>
+<p>行内元素:</p>
+<ul>
+<li>行内元素脱离文档流以后会变成块元素（可设置宽高），特点和块元素一样</li>
+<li>脱离文档流以后，不需要再区分块和行内了</li>
+</ul>
+<p><strong>clear</strong> :<br>float属性被用于控制浮动。即元素浮动之后，周围的元素会重新排列，为了避免这种情况，使用clear属性，clear属性指定元素两侧不能出现浮动元素。</p>
+<p><strong>清除浮动</strong><br>在一个div中放一张图片，有时候图片会超出div的范围，这个时候我们需要这样做，给div加上此属性</p>
+<p><code>.clearfix &#123;   overflow: auto; &#125;</code></p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p>容器的属性</p>
+<ul>
+<li>flex-direction（主轴方向）</li>
+<li>flex-wrap（是否换行）</li>
+<li>flex-flow（主轴方向与是否换行的简写形式）</li>
+<li>justify-content（在长度上的排列方式）</li>
+<li>align-items（在宽度上的排列方式）</li>
+<li>align-content（行间距）</li>
+</ul>
+<p><strong>flex-direction</strong> :<br>属性决定主轴的方向（即项目的排列方向）<br>, 可以理解为元素排列的起点在哪里，沿哪个方向排列。把显示屏比喻为一张纸的话，该属性决定了第一个字在哪个角开始写以及第一行字写的方向</p>
+<p>row（默认值）：主轴为水平方向，起点在左端。</p>
+<p>row-reverse：主轴为水平方向，起点在右端。</p>
+<p>column：主轴为垂直方向，起点在上沿。</p>
+<p>column-reverse：主轴为垂直方向，起点在下沿。</p>
+<p><strong>flex-wrap</strong> :<br>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行, 把显示屏比喻为一张纸的话，该属性决定了一行字写完以后换行不换行（假设是字可以一直缩小，不换行且继续新增的话，字会背挤的越来越小）</p>
+<p>nowrap（默认）：不换行。</p>
+<p>wrap：换行，第一行在上方。</p>
+<p>wrap-reverse：换行，第一行在下方。</p>
+<p><strong>flex-flow</strong></p>
+<p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+<p><strong>justify-content</strong> :<br>justify-content属性定义了项目在主轴上的对齐方式，可以理解为在显示屏的长度这个方向上元素的排列方式 , 把显示屏比喻为一张纸的话，该属性决定了在这一行的字的排列方式</p>
+<p>flex-start（默认值）：左对齐</p>
+<p>flex-end：右对齐</p>
+<p>center： 居中</p>
+<p>space-between：两端对齐，项目之间的间隔都相等。</p>
+<p>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</p>
+<p><strong>align-items</strong> :<br>align-items属性定义项目在交叉轴上如何对齐<br>可以理解为在显示屏的宽度上元素的排列方式，把显示屏比喻为一张纸的话，该属性决定第一行字距离纸的边距距离</p>
+<p>flex-start：交叉轴的起点对齐。</p>
+<p>flex-end：交叉轴的终点对齐。</p>
+<p>center：交叉轴的中点对齐。</p>
+<p>baseline: 项目的第一行文字的基线对齐。</p>
+<p>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</p>
+<p><strong>align-content</strong> :<br>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用, 可以理解为行与行之间的间隔距离，把显示屏比喻为一张纸的话，该属性决定第行间距</p>
+<p>flex-start：与交叉轴的起点对齐。</p>
+<p>flex-end：与交叉轴的终点对齐。</p>
+<p>center：与交叉轴的中点对齐。</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<p>stretch（默认值）：轴线占满整个交叉轴。（平均铺满显示器）</p>
+<p>作者：Dev_<br>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7184450056206942245">https://juejin.cn/post/7184450056206942245</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://rieraa.github.io">rieraa</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://rieraa.github.io/post/5a252ba9.html">https://rieraa.github.io/post/5a252ba9.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://rieraa.github.io" target="_blank"></a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/css/">css</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/8ad1a2bc.html" title="学习记录"><div class="cover" style="background: linear-gradient(45deg, #001f3f, #284165, #59341a, #820224)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习记录</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/eda1a9a9.html" title="css基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-05</div><div class="title">css基础</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">rieraa</div><div class="author-info__description">生生灯火，明暗无辄</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rieraa"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 160px; max-height: 160px; touch-action: none; width: 640px; height: 640px; padding-top: 2vh"></canvas></div></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#display"><span class="toc-number">1.</span> <span class="toc-text">display</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position"><span class="toc-number">2.</span> <span class="toc-text">position</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float"><span class="toc-number">3.</span> <span class="toc-text">float</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex"><span class="toc-number">4.</span> <span class="toc-text">flex</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/5a252ba9.html" title="css布局">css布局</a><time datetime="2024-02-20T09:55:31.000Z" title="发表于 2024-02-20 17:55:31">2024-02-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/8ad1a2bc.html" title="学习记录">学习记录</a><time datetime="2024-02-19T07:51:07.000Z" title="发表于 2024-02-19 15:51:07">2024-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4f9a43e7.html" title="数组方法">数组方法</a><time datetime="2024-01-08T02:52:35.000Z" title="发表于 2024-01-08 10:52:35">2024-01-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/c2adefc4.html" title="java学习">java学习</a><time datetime="2024-01-07T13:37:30.000Z" title="发表于 2024-01-07 21:37:30">2024-01-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/e190ec45.html" title="浏览器如何保持登录">浏览器如何保持登录</a><time datetime="2024-01-06T06:27:40.000Z" title="发表于 2024-01-06 14:27:40">2024-01-06</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(45deg, #001f3f, #284165, #59341a, #820224)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By rieraa</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><!--a.icon-V.hidden(onclick='switchNightMode()',  title=_p('rightside.night_mode_title'))--><!--    svg(width='25', height='25', viewBox='0 0 1024 1024')--><!--        use#modeicon(xlink:href='#icon-moon')--><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
