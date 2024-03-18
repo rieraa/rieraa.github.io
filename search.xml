@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Express</title>
-    <url>/post/d7c881ac.html</url>
-    <content><![CDATA[<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>这里直接使用<code>app.get</code>来处理请求</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// respond with &quot;hello world&quot; when a GET request is made to the homepage</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    <title>ES6使用手册</title>
+    <url>/post/93bcf3e9.html</url>
+    <content><![CDATA[<h2 id="我用到的-es6"><a href="#我用到的-es6" class="headerlink" title="我用到的 es6"></a>我用到的 es6</h2><ol>
+<li>模板字面量：通过&#96;&#96;标识字符串</li>
+<li></li>
+</ol>
+<h2 id="1-let-和-const"><a href="#1-let-和-const" class="headerlink" title="1.let 和 const"></a>1.let 和 const</h2><h2 id="2-模板字符串"><a href="#2-模板字符串" class="headerlink" title="2.模板字符串"></a>2.模板字符串</h2><h3 id="1-模板字符串"><a href="#1-模板字符串" class="headerlink" title="1.模板字符串"></a>1.模板字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串拼接 bad</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">&quot;this is a&quot;</span> + content;</span><br><span class="line"></span><br><span class="line"><span class="comment">//模板字符串 good</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">`this is a <span class="subst">$&#123;content&#125;</span>`</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h2><p><code>usersController.js</code></p>
-<blockquote>
-<p>暴露函数</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">register</span> = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><code>UserRoutes.js</code></p>
-<blockquote>
-<p>中间件 处理其中一类的请求</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; register &#125; = <span class="built_in">require</span>(<span class="string">&quot;../controllers/usersController&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">路由对象在Express.js中通常被视为一种特殊类型的中间件。当你将路由对象挂载到特定的路径上时，它可以拦截和处理该路径下的请求，类似于其他中间件。路由对象允许你组织和处理特定路径下的请求，因此在这种意义上它可以被认为是中间件的一种。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>).<span class="property">Router</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求路径及回调函数</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/register&quot;</span>, register);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = router;</span><br></pre></td></tr></table></figure>
-
-<p><code>index.js</code></p>
-<blockquote>
-<p>中间件 处理其中一类的请求 挂载 userRoutes 到&#x2F;api&#x2F;auth 路径下</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&quot;cors&quot;</span>);</span><br><span class="line"><span class="comment">// 与mongodb进行交互</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&quot;mongoose&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userRoutes = <span class="built_in">require</span>(<span class="string">&quot;./routes/UserRoutes&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&quot;dotenv&quot;</span>).<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// *中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// *挂载userRoutes到api/auth路径下</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;api/auth&quot;</span>, userRoutes);</span><br><span class="line"></span><br><span class="line">mongoose</span><br><span class="line">  .<span class="title function_">connect</span>(process.<span class="property">env</span>.<span class="property">MONGO_URL</span>, &#123;</span><br><span class="line">    <span class="attr">useNewUrlParser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;DB Connection Success&quot;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error occured&quot;</span>, error.<span class="property">message</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = app.<span class="title function_">listen</span>(process.<span class="property">env</span>.<span class="property">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server Started on Port <span class="subst">$&#123;process.env.PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-标签模板优化书写方式"><a href="#2-标签模板优化书写方式" class="headerlink" title="2.标签模板优化书写方式"></a>2.标签模板优化书写方式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> url = oneLine<span class="string">`</span></span><br><span class="line"><span class="string">	www.taobao.com/example/index.html</span></span><br><span class="line"><span class="string">	?foo=<span class="subst">$&#123;foo&#125;</span></span></span><br><span class="line"><span class="string">	&amp;bar=<span class="subst">$&#123;bar&#125;</span></span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(url); <span class="comment">// www.taobao.com/example/index.html?foo=foo&amp;bar=bar</span></span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>JavaScript 基础</category>
+      </categories>
       <tags>
-        <tag>node</tag>
+        <tag>javaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -68,6 +58,99 @@
 ]]></content>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Express</title>
+    <url>/post/d7c881ac.html</url>
+    <content><![CDATA[<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>这里直接使用<code>app.get</code>来处理请求</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// respond with &quot;hello world&quot; when a GET request is made to the homepage</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h2><p><code>usersController.js</code></p>
+<blockquote>
+<p>暴露函数</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">register</span> = <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>UserRoutes.js</code></p>
+<blockquote>
+<p>中间件 处理其中一类的请求</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; register &#125; = <span class="built_in">require</span>(<span class="string">&quot;../controllers/usersController&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">路由对象在Express.js中通常被视为一种特殊类型的中间件。当你将路由对象挂载到特定的路径上时，它可以拦截和处理该路径下的请求，类似于其他中间件。路由对象允许你组织和处理特定路径下的请求，因此在这种意义上它可以被认为是中间件的一种。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>).<span class="property">Router</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求路径及回调函数</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/register&quot;</span>, register);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = router;</span><br></pre></td></tr></table></figure>
+
+<p><code>index.js</code></p>
+<blockquote>
+<p>中间件 处理其中一类的请求 挂载 userRoutes 到&#x2F;api&#x2F;auth 路径下</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;source/_posts/Express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&quot;cors&quot;</span>);</span><br><span class="line"><span class="comment">// 与mongodb进行交互</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&quot;mongoose&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userRoutes = <span class="built_in">require</span>(<span class="string">&quot;./routes/UserRoutes&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&quot;dotenv&quot;</span>).<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// *中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// *挂载userRoutes到api/auth路径下</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;api/auth&quot;</span>, userRoutes);</span><br><span class="line"></span><br><span class="line">mongoose</span><br><span class="line">  .<span class="title function_">connect</span>(process.<span class="property">env</span>.<span class="property">MONGO_URL</span>, &#123;</span><br><span class="line">    <span class="attr">useNewUrlParser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;DB Connection Success&quot;</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error occured&quot;</span>, error.<span class="property">message</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = app.<span class="title function_">listen</span>(process.<span class="property">env</span>.<span class="property">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server Started on Port <span class="subst">$&#123;process.env.PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS模块的导入导出</title>
+    <url>/post/3e90cfd3.html</url>
+    <content><![CDATA[<h2 id="JS-模块的导入导出"><a href="#JS-模块的导入导出" class="headerlink" title="JS 模块的导入导出"></a>JS 模块的导入导出</h2><p>导入导出模块？ 要不要加{}？ 如何导出模块？路径中需不需要写文件后缀？</p>
+<h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p><code>nodejs </code> 借鉴了 <code>Commonjs</code> 的 Module ，实现了良好的模块化管理</p>
+<p><strong>特点</strong></p>
+<ul>
+<li><p>在 <code>commonjs</code> 中每一个 js 文件都是一个单独的模块，我们可以称之为 module；</p>
+</li>
+<li><p>该模块中，包含 CommonJS 规范的核心变量: exports、module.exports、require；</p>
+</li>
+</ul>
+<h3 id="Es-Module"><a href="#Es-Module" class="headerlink" title="Es Module"></a>Es Module</h3><p>export 与 export default 的区别</p>
+<ul>
+<li>export 与 export default 均可用于导出常量、函数、文件、模块等</li>
+<li>可以在其它文件或模块中通过 import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用</li>
+<li>export default 后面不能跟 const 或 let 的关键词</li>
+<li>export、import 可以有多个，export default 仅有一个。</li>
+<li>通过 export 方式导出，在导入时要加 { }，export default 则不需要</li>
+<li>export<code>具名</code>导出 xxx ，export default<code>匿名</code>。区别在于导入的时候，export 需要<code>一样</code>的名称才能匹配，后者无论取什么名都可以。</li>
+<li>模块化管理中一个文件就是一个模块，export 可以导出多个方法和变量，export default 只能导出当前模块，一个 js 文件中只支持出现一个</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ES Moudle</tag>
+        <tag>CommonJS</tag>
+        <tag>模块化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pinia</title>
+    <url>/post/74dce755.html</url>
+    <content><![CDATA[<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install pinia</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>入口文件中引入,将 <code>pinia</code>挂载到 <code>Vue</code>应用中</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(pinia);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建store</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/store/user.<span class="property">ts</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数是应用程序中 store 的唯一 id</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUsersStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;users&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;Jhon&quot;</span>,</span><br><span class="line">            <span class="attr">age</span>: <span class="number">25</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//leii</span></span><br><span class="line">    <span class="attr">getters</span>: &#123;</span><br><span class="line">        <span class="attr">getAddAge</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> state.<span class="property">age</span> + <span class="number">100</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用store</li>
+</ul>
+<p>利用 <code>pinia</code>的 <code>storeToRefs</code>函数，将 <code>state</code>中的数据变为了响应式的。</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/<span class="title class_">App</span>.<span class="property">vue</span></span><br><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; useUsersStore &#125; <span class="keyword">from</span> <span class="string">&quot;../src/store/user&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useUsersStore</span>();</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, sex &#125; = <span class="title function_">storeToRefs</span>(store);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>批量更改数据</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 较少字段的修改方式</span></span><br><span class="line">&lt;button <span class="meta">@click</span>=<span class="string">&quot;patchStore&quot;</span>&gt;批量修改数据&lt;/button&gt;</span><br><span class="line"><span class="comment">// 批量修改数据</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">patchStore</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  store.$patch(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">23</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">store.$patch(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  state.<span class="property">items</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;shoes&#x27;</span>, <span class="attr">quantity</span>: <span class="number">1</span> &#125;)</span><br><span class="line">  state.<span class="property">hasChanged</span> = <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>StateManagement</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -120,42 +203,6 @@
       </categories>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pinia</title>
-    <url>/post/74dce755.html</url>
-    <content><![CDATA[<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul>
-<li>安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install pinia</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>入口文件中引入,将 <code>pinia</code>挂载到 <code>Vue</code>应用中</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&quot;pinia&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(pinia);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建store</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/store/user.<span class="property">ts</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数是应用程序中 store 的唯一 id</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUsersStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;users&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&quot;Jhon&quot;</span>,</span><br><span class="line">            <span class="attr">age</span>: <span class="number">25</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//leii</span></span><br><span class="line">    <span class="attr">getters</span>: &#123;</span><br><span class="line">        <span class="attr">getAddAge</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> state.<span class="property">age</span> + <span class="number">100</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用store</li>
-</ul>
-<p>利用 <code>pinia</code>的 <code>storeToRefs</code>函数，将 <code>state</code>中的数据变为了响应式的。</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">/src/<span class="title class_">App</span>.<span class="property">vue</span></span><br><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; useUsersStore &#125; <span class="keyword">from</span> <span class="string">&quot;../src/store/user&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useUsersStore</span>();</span><br><span class="line"><span class="keyword">const</span> &#123; name, age, sex &#125; = <span class="title function_">storeToRefs</span>(store);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>批量更改数据</li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 较少字段的修改方式</span></span><br><span class="line">&lt;button <span class="meta">@click</span>=<span class="string">&quot;patchStore&quot;</span>&gt;批量修改数据&lt;/button&gt;</span><br><span class="line"><span class="comment">// 批量修改数据</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">patchStore</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  store.$patch(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">23</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line">store.$patch(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  state.<span class="property">items</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;shoes&#x27;</span>, <span class="attr">quantity</span>: <span class="number">1</span> &#125;)</span><br><span class="line">  state.<span class="property">hasChanged</span> = <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>StateManagement</tag>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -229,6 +276,30 @@
 ]]></content>
       <tags>
         <tag>javaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue</title>
+    <url>/post/f8e09374.html</url>
+    <content><![CDATA[<h2 id="渐进式-JavaScript-框架"><a href="#渐进式-JavaScript-框架" class="headerlink" title="渐进式 JavaScript 框架"></a>渐进式 JavaScript 框架</h2><h2 id="使用过程中遇到的问题"><a href="#使用过程中遇到的问题" class="headerlink" title="使用过程中遇到的问题"></a>使用过程中遇到的问题</h2><h3 id="属性带不带冒号"><a href="#属性带不带冒号" class="headerlink" title="属性带不带冒号"></a>属性带不带冒号</h3><p>冒号实际上是<code>v-bind:attribute</code>的缩写</p>
+<p><code>v-bind</code>能够动态的绑定一个或多个 attribute，也可以是组件的 prop</p>
+<h3 id="模板引用"><a href="#模板引用" class="headerlink" title="模板引用"></a>模板引用</h3><p>使用时需要加<code>value</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">xxxx.<span class="property">value</span>.<span class="property">validate</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="插槽的使用（slot）"><a href="#插槽的使用（slot）" class="headerlink" title="插槽的使用（slot）"></a>插槽的使用（slot）</h3><p>示例：</p>
+<blockquote>
+<p>FancyList.vue</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">  import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">  const props = defineProps([&#x27;api-url&#x27;, &#x27;per-page&#x27;])</span><br><span class="line"></span><br><span class="line">  const items = ref([])</span><br><span class="line"></span><br><span class="line">  // mock remote data fetching</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    items.value = [</span><br><span class="line">      &#123; body: &#x27;Scoped Slots Guide&#x27;, username: &#x27;Evan You&#x27;, likes: 20 &#125;,</span><br><span class="line">      &#123; body: &#x27;Vue Tutorial&#x27;, username: &#x27;Natalia Tepluhina&#x27;, likes: 10 &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;, 1000)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-if=&quot;!items.length&quot;&gt;</span><br><span class="line">      Loading...</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in items&quot;&gt;</span><br><span class="line">      &lt;slot name=&quot;item&quot; v-bind=&quot;item&quot;/&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  ul &#123;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">    padding: 5px;</span><br><span class="line">    background: linear-gradient(315deg, #42d392 25%, #647eff);</span><br><span class="line">  &#125;</span><br><span class="line">  li &#123;</span><br><span class="line">    padding: 5px 20px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">    background: #fff;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><p>如何实现双向绑定</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;testValue&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;testValue = $event.target.value&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--$event  访问原始的 DOM 事件 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -711,80 +782,9 @@
       </tags>
   </entry>
   <entry>
-    <title>ES6使用手册</title>
-    <url>/post/93bcf3e9.html</url>
-    <content><![CDATA[<h2 id="我用到的-es6"><a href="#我用到的-es6" class="headerlink" title="我用到的 es6"></a>我用到的 es6</h2><ol>
-<li>模板字面量：通过&#96;&#96;标识字符串</li>
-<li></li>
-</ol>
-<h2 id="1-let-和-const"><a href="#1-let-和-const" class="headerlink" title="1.let 和 const"></a>1.let 和 const</h2><h2 id="2-模板字符串"><a href="#2-模板字符串" class="headerlink" title="2.模板字符串"></a>2.模板字符串</h2><h3 id="1-模板字符串"><a href="#1-模板字符串" class="headerlink" title="1.模板字符串"></a>1.模板字符串</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字符串拼接 bad</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">&quot;this is a&quot;</span> + content;</span><br><span class="line"></span><br><span class="line"><span class="comment">//模板字符串 good</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">`this is a <span class="subst">$&#123;content&#125;</span>`</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-标签模板优化书写方式"><a href="#2-标签模板优化书写方式" class="headerlink" title="2.标签模板优化书写方式"></a>2.标签模板优化书写方式</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> url = oneLine<span class="string">`</span></span><br><span class="line"><span class="string">	www.taobao.com/example/index.html</span></span><br><span class="line"><span class="string">	?foo=<span class="subst">$&#123;foo&#125;</span></span></span><br><span class="line"><span class="string">	&amp;bar=<span class="subst">$&#123;bar&#125;</span></span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(url); <span class="comment">// www.taobao.com/example/index.html?foo=foo&amp;bar=bar</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript 基础</category>
-      </categories>
-      <tags>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue</title>
-    <url>/post/f8e09374.html</url>
-    <content><![CDATA[<h2 id="渐进式-JavaScript-框架"><a href="#渐进式-JavaScript-框架" class="headerlink" title="渐进式 JavaScript 框架"></a>渐进式 JavaScript 框架</h2><h2 id="使用过程中遇到的问题"><a href="#使用过程中遇到的问题" class="headerlink" title="使用过程中遇到的问题"></a>使用过程中遇到的问题</h2><h3 id="属性带不带冒号"><a href="#属性带不带冒号" class="headerlink" title="属性带不带冒号"></a>属性带不带冒号</h3><p>冒号实际上是<code>v-bind:attribute</code>的缩写</p>
-<p><code>v-bind</code>能够动态的绑定一个或多个 attribute，也可以是组件的 prop</p>
-<h3 id="模板引用"><a href="#模板引用" class="headerlink" title="模板引用"></a>模板引用</h3><p>使用时需要加<code>value</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">xxxx.<span class="property">value</span>.<span class="property">validate</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="插槽的使用（slot）"><a href="#插槽的使用（slot）" class="headerlink" title="插槽的使用（slot）"></a>插槽的使用（slot）</h3><p>示例：</p>
-<blockquote>
-<p>FancyList.vue</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">  import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">  const props = defineProps([&#x27;api-url&#x27;, &#x27;per-page&#x27;])</span><br><span class="line"></span><br><span class="line">  const items = ref([])</span><br><span class="line"></span><br><span class="line">  // mock remote data fetching</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    items.value = [</span><br><span class="line">      &#123; body: &#x27;Scoped Slots Guide&#x27;, username: &#x27;Evan You&#x27;, likes: 20 &#125;,</span><br><span class="line">      &#123; body: &#x27;Vue Tutorial&#x27;, username: &#x27;Natalia Tepluhina&#x27;, likes: 10 &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;, 1000)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-if=&quot;!items.length&quot;&gt;</span><br><span class="line">      Loading...</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &lt;li v-for=&quot;item in items&quot;&gt;</span><br><span class="line">      &lt;slot name=&quot;item&quot; v-bind=&quot;item&quot;/&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">  ul &#123;</span><br><span class="line">    list-style-type: none;</span><br><span class="line">    padding: 5px;</span><br><span class="line">    background: linear-gradient(315deg, #42d392 25%, #647eff);</span><br><span class="line">  &#125;</span><br><span class="line">  li &#123;</span><br><span class="line">    padding: 5px 20px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">    background: #fff;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-</blockquote>
-<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><p>如何实现双向绑定</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;testValue&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;testValue = $event.target.value&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--$event  访问原始的 DOM 事件 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WELCOME TO MY BLOG 🍾 🪅 🥂 🎉</title>
     <url>/post/4a17b156.html</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>JS模块的导入导出</title>
-    <url>/post/3e90cfd3.html</url>
-    <content><![CDATA[<h2 id="JS-模块的导入导出"><a href="#JS-模块的导入导出" class="headerlink" title="JS 模块的导入导出"></a>JS 模块的导入导出</h2><p>导入导出模块？ 要不要加{}？ 如何导出模块？路径中需不需要写文件后缀？</p>
-<h3 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h3><p><code>nodejs </code> 借鉴了 <code>Commonjs</code> 的 Module ，实现了良好的模块化管理</p>
-<p><strong>特点</strong></p>
-<ul>
-<li><p>在 <code>commonjs</code> 中每一个 js 文件都是一个单独的模块，我们可以称之为 module；</p>
-</li>
-<li><p>该模块中，包含 CommonJS 规范的核心变量: exports、module.exports、require；</p>
-</li>
-</ul>
-<h3 id="Es-Module"><a href="#Es-Module" class="headerlink" title="Es Module"></a>Es Module</h3><p>export 与 export default 的区别</p>
-<ul>
-<li>export 与 export default 均可用于导出常量、函数、文件、模块等</li>
-<li>可以在其它文件或模块中通过 import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用</li>
-<li>export default 后面不能跟 const 或 let 的关键词</li>
-<li>export、import 可以有多个，export default 仅有一个。</li>
-<li>通过 export 方式导出，在导入时要加 { }，export default 则不需要</li>
-<li>export<code>具名</code>导出 xxx ，export default<code>匿名</code>。区别在于导入的时候，export 需要<code>一样</code>的名称才能匹配，后者无论取什么名都可以。</li>
-<li>模块化管理中一个文件就是一个模块，export 可以导出多个方法和变量，export default 只能导出当前模块，一个 js 文件中只支持出现一个</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>ES Moudle</tag>
-        <tag>CommonJS</tag>
-        <tag>模块化</tag>
-      </tags>
   </entry>
   <entry>
     <title>WebSocket</title>
@@ -855,15 +855,6 @@
       </categories>
       <tags>
         <tag>websocket</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css基础</title>
-    <url>/post/eda1a9a9.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>css</tag>
-        <tag>样式</tag>
       </tags>
   </entry>
   <entry>
@@ -962,38 +953,18 @@
 <p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
 <p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
 <p>stretch（默认值）：轴线占满整个交叉轴。（平均铺满显示器）</p>
-<p>作者：Dev_<br>链接：<a href="https://juejin.cn/post/7184450056206942245">https://juejin.cn/post/7184450056206942245</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 ]]></content>
       <tags>
         <tag>css</tag>
       </tags>
   </entry>
   <entry>
-    <title>java学习</title>
-    <url>/post/c2adefc4.html</url>
-    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
-<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
-</ul>
-<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
-<p>VO是返回给前端用于展示的 </p>
-<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
-<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
-<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
-<p>下面是一个使用DTO和VO的示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
+    <title>css基础</title>
+    <url>/post/eda1a9a9.html</url>
+    <content><![CDATA[]]></content>
       <tags>
-        <tag>java</tag>
+        <tag>css</tag>
+        <tag>样式</tag>
       </tags>
   </entry>
   <entry>
@@ -1025,6 +996,34 @@
       <categories>
         <category>JavaScript 深入学习</category>
       </categories>
+  </entry>
+  <entry>
+    <title>java学习</title>
+    <url>/post/c2adefc4.html</url>
+    <content><![CDATA[<h2 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; fruits = Arrays.asList(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Grapes&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Arrays.asList(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Grapes&quot;)</code> 创建了一个包含字符串的固定大小的列表，其中包含了四种水果，即苹果（Apple）、香蕉（Banana）、橙子（Orange）和葡萄（Grapes）。</li>
+<li><code>List&lt;String&gt; fruits</code> 声明了一个泛型列表，其中的元素类型是字符串（<code>String</code>）。</li>
+</ul>
+<h2 id="VO和DTO是什么"><a href="#VO和DTO是什么" class="headerlink" title="VO和DTO是什么"></a>VO和DTO是什么</h2><p>一句话总结 </p>
+<p>VO是返回给前端用于展示的 </p>
+<p>DTO是不同层间传输的数据对象（前端传来的数据可能是DTO，也可能后端处理时查完表组成一个DTO再提取出VO返回给前端）</p>
+<p>DTO和VO是Java中常用的数据传输对象，它们的主要区别在于它们的使用场景和目的。</p>
+<p>DTO（Data Transfer Object）是用于在不同层之间传输数据的对象，通常用于将数据库中的数据转换为前端需要的格式，方便前后端之间的数据交互。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DTO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserDTO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>VO（Value Object）则是用于展示用的数据，不管展示方式是网页、客户端还是APP，只要是这个东西是让人看到的，这就叫VO。VO主要的存在形式就是js里面的对象（也可以简单理解成json）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// VO示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 省略getter和setter方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>VO和DTO的区别主要有两个方面：一个是字段不一样，VO根据需要会删减一些字段；另一个是值不一样，VO会根据需要对DTO中的值进行展示业务的解释。在Spring Boot中，DTO和VO通常用于在Controller层和Service层之间传输数据。</p>
+<p>下面是一个使用DTO和VO的示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Controller层</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/users&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;UserVO&gt; <span class="title function_">createUser</span><span class="params">(<span class="meta">@RequestBody</span> UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> userService.createUser(userDTO);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(userVO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Service层</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> UserVO <span class="title function_">createUser</span><span class="params">(UserDTO userDTO)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(userDTO.getName());</span><br><span class="line">        user.setEmail(userDTO.getEmail());</span><br><span class="line">        user.setPassword(userDTO.getPassword());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line"></span><br><span class="line">        <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">        userVO.setName(user.getName());</span><br><span class="line">        userVO.setEmail(user.getEmail());</span><br><span class="line">        <span class="keyword">return</span> userVO;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-Boot项目"><a href="#Spring-Boot项目" class="headerlink" title="Spring Boot项目"></a>Spring Boot项目</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3>]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title>函数闭包</title>
@@ -1149,6 +1148,120 @@
       </categories>
       <tags>
         <tag>原型链</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组方法</title>
+    <url>/post/4f9a43e7.html</url>
+    <content><![CDATA[<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li><p>join(‘str’)</p>
+<p>数组-&gt;字符串</p>
+<p>将数组通过str分割并拼接成字符串</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// join实现字符串重复(n：次数)</span></span><br><span class="line"><span class="keyword">let</span> repeat = <span class="keyword">new</span> <span class="title class_">Array</span>(n+<span class="number">1</span>).<span class="title function_">join</span>(str)</span><br></pre></td></tr></table></figure></li>
+<li><p>sort()</p>
+<p>比较函数返回负数则a在b前（升序） 返回正数则a在b后（倒序）</p>
+<p>改变了原数组</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title class_">Users</span> = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;鸣人&#x27;</span>, <span class="attr">age</span>: <span class="number">16</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;卡卡西&#x27;</span>, <span class="attr">age</span>: <span class="number">28</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;自来也&#x27;</span>, <span class="attr">age</span>: <span class="number">50</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;佐助&#x27;</span>, <span class="attr">age</span>: <span class="number">17</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 按照年龄从大到小排序</span></span><br><span class="line"><span class="title class_">Users</span>.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b.<span class="property">age</span> - a.<span class="property">age</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Users</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 按照年龄从小到大排序</span></span><br><span class="line"><span class="title class_">Users</span>.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a.<span class="property">age</span> - b.<span class="property">age</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Users</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>reverse()</p>
+<p>颠倒原数组，改变原数组</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">3</span>,<span class="number">63</span>,<span class="number">2</span>,<span class="number">25</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">reverse</span>())<span class="comment">// [3, 25, 2, 63, 3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr)<span class="comment">//[3, 25, 2, 63, 3]  原数组也被改变了</span></span><br></pre></td></tr></table></figure></li>
+<li><p>concat()</p>
+<p>连接两个或多个数组，不改变原数组</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> arrCopy = arr.<span class="title function_">concat</span>(<span class="number">9</span>,[<span class="number">11</span>,<span class="number">13</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy);   <span class="comment">//[1, 3, 5, 7, 9, 11, 13]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);   <span class="comment">// [1, 3, 5, 7](原数组未被修改)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//添加的为数组时，将数组的每个元素的添加进去</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrCopy2 = arr.<span class="title function_">concat</span>([<span class="number">9</span>,[<span class="number">11</span>,<span class="number">13</span>]]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy2);   <span class="comment">//[1, 3, 5, 7, 9, Array[2]]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy2[<span class="number">5</span>]);   <span class="comment">//[11, 13]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>slice(param1,param2)</p>
+<p>从原数组中截取，不改变原数组</p>
+<p>返回从原数组中指定开始下标到结束下标之间的项组成的新数组</p>
+<p>slice()方法可以接受一或两个参数，即要返回项的起始和结束位置</p>
+<p>在<strong>只有一个参数</strong>的情况下， slice()方法返回从该参数指定位置开始到当前数组末尾的所有项</p>
+<p>如果<strong>有两个参数</strong>，该方法返回起始和结束位置之间的项，但<strong>不包括结束位置的项</strong></p>
+<p>参数为负数时，对应的下标为length-param</p>
+</li>
+<li><p>splice()</p>
+<ul>
+<li>删除元素</li>
+<li>插入元素</li>
+<li>替换元素</li>
+</ul>
+</li>
+<li><p>findIndex()</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>执行上下文栈</title>
+    <url>/post/dec4cd8f.html</url>
+    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
+
+<p>两段代码执行的结果均输出<code>local scope</code></p>
+<blockquote>
+<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
+<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
+</blockquote>
+<p>两端代码的压栈顺序</p>
+<p>答案就是执行上下文栈的变化不一样。</p>
+<p>第一段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
+</blockquote>
+<p>让我们模拟第二段代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
+</blockquote>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
+<ul>
+<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有 window 对象的属性拥有全局作用域</li>
+</ul>
+<h2 id="执行上下文栈的流程"><a href="#执行上下文栈的流程" class="headerlink" title="执行上下文栈的流程"></a>执行上下文栈的流程</h2><ol>
+<li><p>压入全局上下文</p>
+</li>
+<li><p>当执行一个到函数时，会创建一个函数执行上下文（Function Execution Context），并将其压入执行上下文栈。这个函数执行上下文包括了函数的参数，以及在函数内部声明的变量和函数。</p>
+<p>在 JavaScript 中，存在全局执行上下文（Global Execution Context）和函数执行上下文（Function Execution Context）。全局执行上下文在浏览器开始读取脚本时创建，只有一个。而函数执行上下文每当函数被调用时都会创建。</p>
+<p>每个执行上下文都有一个关联的变量对象（Variable Object），它包含了在上下文中定义的所有变量和函数。在函数执行上下文中，活动对象（Activation Object）扮演了变量对象的角色，它在函数执行上下文被推入执行上下文栈时创建，包含了函数的参数，以及在函数内部声明的所有变量和函数。</p>
+</li>
+<li><p><strong>执行函数执行上下文</strong></p>
+<p>执行上下文的代码会分成两个阶段进行处理：分析和执行，我们也可以叫做：</p>
+<ul>
+<li><p>进入执行上下文</p>
+<p><img src="https://oooooo.oss-cn-fuzhou.aliyuncs.com/readme/202402291724151.png" alt="image-20240229172408618"></p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JavaScript 深入学习</category>
+      </categories>
+      <tags>
+        <tag>上下文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章配置</title>
+    <url>/post/dc78123f.html</url>
+    <content><![CDATA[<h2 id="表头配置"><a href="#表头配置" class="headerlink" title="表头配置"></a>表头配置</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">description:</span><br><span class="line">top<span class="emphasis">_img: &#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更新时间"><a href="#更新时间" class="headerlink" title="更新时间"></a>更新时间</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">updated:</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>config</tag>
       </tags>
   </entry>
   <entry>
@@ -1277,120 +1390,6 @@
 ]]></content>
       <tags>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>执行上下文栈</title>
-    <url>/post/dec4cd8f.html</url>
-    <content><![CDATA[<h2 id="一个思考题"><a href="#一个思考题" class="headerlink" title="一个思考题"></a>一个思考题</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> scope;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>()();</span><br></pre></td></tr></table></figure>
-
-<p>两段代码执行的结果均输出<code>local scope</code></p>
-<blockquote>
-<p>JavaScript 采用的是词法作用域，<strong>函数的作用域基于函数创建的位置</strong></p>
-<p>JavaScript 函数的执行用到了作用域链，这个作用域链是在函数定义的时候创建的。嵌套的函数 f() 定义在这个作用域链里，其中的变量 scope 一定是局部变量，不管何时何地执行函数 f()，这种绑定在执行 f() 时依然有效。</p>
-</blockquote>
-<p>两端代码的压栈顺序</p>
-<p>答案就是执行上下文栈的变化不一样。</p>
-<p>第一段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>第一代码在执行 <code>checkscope()</code> 时，内部的 <code>f()</code> 也在函数内被执行。因此有连续两次的压栈操作。</p>
-</blockquote>
-<p>让我们模拟第二段代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;checkscope&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">push</span>(&lt;f&gt; functionContext);</span><br><span class="line"><span class="title class_">ECStack</span>.<span class="title function_">pop</span>();</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在第二段代码中，<code>checkscope()</code> 返回了函数 <code>f</code>，然后在返回的函数 <code>f</code> 上执行了另一次 <code>()</code>，这导致了两次执行上下文的压栈和出栈。</p>
-</blockquote>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下几种情形拥有全局作用域：</p>
-<ul>
-<li>最&#x3D;&#x3D;外层函数&#x3D;&#x3D;和&#x3D;&#x3D;在最外层函数外面定义的变量&#x3D;&#x3D;拥有全局作用域</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> outVariable = <span class="string">&quot;我是最外层变量&quot;</span>; <span class="comment">//最外层变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">outFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//最外层函数</span></span><br><span class="line">  <span class="keyword">var</span> inVariable = <span class="string">&quot;内层变量&quot;</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">innerFun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//内层函数</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">innerFun</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(outVariable); <span class="comment">//我是最外层变量</span></span><br><span class="line"><span class="title function_">outFun</span>(); <span class="comment">//内层变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable); <span class="comment">//inVariable is not defined</span></span><br><span class="line"><span class="title function_">innerFun</span>(); <span class="comment">//innerFun is not defined</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>所有末定义直接赋值的变量自动声明为拥有全局作用域</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">outFun2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  variable = <span class="string">&quot;未定义直接赋值的变量&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> inVariable2 = <span class="string">&quot;内层变量2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">outFun2</span>(); <span class="comment">//要先执行这个函数，否则根本不知道里面是啥</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(variable); <span class="comment">//未定义直接赋值的变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(inVariable2); <span class="comment">//inVariable2 is not defined</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>所有 window 对象的属性拥有全局作用域</li>
-</ul>
-<h2 id="执行上下文栈的流程"><a href="#执行上下文栈的流程" class="headerlink" title="执行上下文栈的流程"></a>执行上下文栈的流程</h2><ol>
-<li><p>压入全局上下文</p>
-</li>
-<li><p>当执行一个到函数时，会创建一个函数执行上下文（Function Execution Context），并将其压入执行上下文栈。这个函数执行上下文包括了函数的参数，以及在函数内部声明的变量和函数。</p>
-<p>在 JavaScript 中，存在全局执行上下文（Global Execution Context）和函数执行上下文（Function Execution Context）。全局执行上下文在浏览器开始读取脚本时创建，只有一个。而函数执行上下文每当函数被调用时都会创建。</p>
-<p>每个执行上下文都有一个关联的变量对象（Variable Object），它包含了在上下文中定义的所有变量和函数。在函数执行上下文中，活动对象（Activation Object）扮演了变量对象的角色，它在函数执行上下文被推入执行上下文栈时创建，包含了函数的参数，以及在函数内部声明的所有变量和函数。</p>
-</li>
-<li><p><strong>执行函数执行上下文</strong></p>
-<p>执行上下文的代码会分成两个阶段进行处理：分析和执行，我们也可以叫做：</p>
-<ul>
-<li><p>进入执行上下文</p>
-<p><img src="https://oooooo.oss-cn-fuzhou.aliyuncs.com/readme/202402291724151.png" alt="image-20240229172408618"></p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>JavaScript 深入学习</category>
-      </categories>
-      <tags>
-        <tag>上下文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数组方法</title>
-    <url>/post/4f9a43e7.html</url>
-    <content><![CDATA[<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
-<li><p>join(‘str’)</p>
-<p>数组-&gt;字符串</p>
-<p>将数组通过str分割并拼接成字符串</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// join实现字符串重复(n：次数)</span></span><br><span class="line"><span class="keyword">let</span> repeat = <span class="keyword">new</span> <span class="title class_">Array</span>(n+<span class="number">1</span>).<span class="title function_">join</span>(str)</span><br></pre></td></tr></table></figure></li>
-<li><p>sort()</p>
-<p>比较函数返回负数则a在b前（升序） 返回正数则a在b后（倒序）</p>
-<p>改变了原数组</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title class_">Users</span> = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;鸣人&#x27;</span>, <span class="attr">age</span>: <span class="number">16</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;卡卡西&#x27;</span>, <span class="attr">age</span>: <span class="number">28</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;自来也&#x27;</span>, <span class="attr">age</span>: <span class="number">50</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">&#x27;佐助&#x27;</span>, <span class="attr">age</span>: <span class="number">17</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 按照年龄从大到小排序</span></span><br><span class="line"><span class="title class_">Users</span>.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b.<span class="property">age</span> - a.<span class="property">age</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Users</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 按照年龄从小到大排序</span></span><br><span class="line"><span class="title class_">Users</span>.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a.<span class="property">age</span> - b.<span class="property">age</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Users</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>reverse()</p>
-<p>颠倒原数组，改变原数组</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">3</span>,<span class="number">63</span>,<span class="number">2</span>,<span class="number">25</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">reverse</span>())<span class="comment">// [3, 25, 2, 63, 3]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr)<span class="comment">//[3, 25, 2, 63, 3]  原数组也被改变了</span></span><br></pre></td></tr></table></figure></li>
-<li><p>concat()</p>
-<p>连接两个或多个数组，不改变原数组</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> arrCopy = arr.<span class="title function_">concat</span>(<span class="number">9</span>,[<span class="number">11</span>,<span class="number">13</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy);   <span class="comment">//[1, 3, 5, 7, 9, 11, 13]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);   <span class="comment">// [1, 3, 5, 7](原数组未被修改)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//添加的为数组时，将数组的每个元素的添加进去</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrCopy2 = arr.<span class="title function_">concat</span>([<span class="number">9</span>,[<span class="number">11</span>,<span class="number">13</span>]]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy2);   <span class="comment">//[1, 3, 5, 7, 9, Array[2]]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arrCopy2[<span class="number">5</span>]);   <span class="comment">//[11, 13]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>slice(param1,param2)</p>
-<p>从原数组中截取，不改变原数组</p>
-<p>返回从原数组中指定开始下标到结束下标之间的项组成的新数组</p>
-<p>slice()方法可以接受一或两个参数，即要返回项的起始和结束位置</p>
-<p>在<strong>只有一个参数</strong>的情况下， slice()方法返回从该参数指定位置开始到当前数组末尾的所有项</p>
-<p>如果<strong>有两个参数</strong>，该方法返回起始和结束位置之间的项，但<strong>不包括结束位置的项</strong></p>
-<p>参数为负数时，对应的下标为length-param</p>
-</li>
-<li><p>splice()</p>
-<ul>
-<li>删除元素</li>
-<li>插入元素</li>
-<li>替换元素</li>
-</ul>
-</li>
-<li><p>findIndex()</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文章配置</title>
-    <url>/post/dc78123f.html</url>
-    <content><![CDATA[<h2 id="表头配置"><a href="#表头配置" class="headerlink" title="表头配置"></a>表头配置</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">description:</span><br><span class="line">top<span class="emphasis">_img: &#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="更新时间"><a href="#更新时间" class="headerlink" title="更新时间"></a>更新时间</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">updated:</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>config</tag>
       </tags>
   </entry>
   <entry>
